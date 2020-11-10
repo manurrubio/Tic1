@@ -15,9 +15,9 @@ public class Item {
     @Column(length = 25)
     private String type;
     @Column(length = 25)
-    private String color;
+    private List<String> color;
     @Column(length = 25)
-    private String size;
+    private List<String> size;
     @Column(length = 25)
     private String style;
     @Column(length = 100)
@@ -31,6 +31,12 @@ public class Item {
             inverseJoinColumns = @JoinColumn(name="BRAND_ID")
     )
     private Brand brand;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "ITEM_STOCK",
+            joinColumns = @JoinColumn(name="ITEM_ID"),
+            inverseJoinColumns = @JoinColumn(name="STOCK_ID")
+    )
+    private Stock stock;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "ITEM_STORE",
@@ -61,7 +67,15 @@ public class Item {
     public Item() {
     }
 
-    public Item(long id, String type, String color, String size, String style, String description, int price, String category, Brand brand, Store store, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3, byte[] imagen4, byte[] imagen5) {
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public Item(long id, String type, List<String> color, List<String> size, String style, String description, int price, String category, Brand brand, Stock stock, Store store, Usuario usuario, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3, byte[] imagen4, byte[] imagen5) {
         this.id = id;
         this.type = type;
         this.color = color;
@@ -71,7 +85,9 @@ public class Item {
         this.price = price;
         this.category = category;
         this.brand = brand;
+        this.stock = stock;
         this.store = store;
+        this.usuario = usuario;
         this.imagenPrincipal = imagenPrincipal;
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
@@ -96,19 +112,19 @@ public class Item {
         this.type = type;
     }
 
-    public String getColor() {
+    public List<String> getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(List<String> color) {
         this.color = color;
     }
 
-    public String getSize() {
+    public List<String> getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(List<String> size) {
         this.size = size;
     }
 
