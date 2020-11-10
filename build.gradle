@@ -1,0 +1,50 @@
+plugins {
+	id 'org.openjfx.javafxplugin' version '0.0.8'
+	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'application'
+}
+
+
+group = 'proyecto'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.3.4.RELEASE'
+	compile group: 'org.springframework', name: 'spring-context', version: '5.2.9.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile group: 'org.openjfx', name: 'javafx-swing', version: '11.0.2'
+	compile 'com.jfoenix:jfoenix:9.0.10'
+	implementation 'net.rgielen:javafx-weaver-spring-boot-starter:1.3.0'
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	runtimeOnly 'mysql:mysql-connector-java'
+	testCompile group: 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
+}
+
+
+
+javafx {
+	version = "11"
+	modules = [ 'javafx.controls','javafx.graphics','javafx.fxml','javafx.base','javafx.media','javafx.swing', 'javafx.web']
+
+
+}
+test {
+	useJUnitPlatform()
+}
+mainClassName= 'proyecto.tic.ui.ApplicationFX'
+
+
+//jdbc:mysql://localhost:3306/tic1?serverTimezone=UTC
