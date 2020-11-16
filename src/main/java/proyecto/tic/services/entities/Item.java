@@ -14,10 +14,11 @@ public class Item {
     private long id;
     @Column(length = 25)
     private String type;
-    @Column(length = 25)
+    @ElementCollection
     private List<String> color;
-    @Column(length = 25)
+    @ElementCollection
     private List<String> size;
+    //HAY QUE RESOLVER LO DE LAS LIST
     @Column(length = 25)
     private String style;
     @Column(length = 100)
