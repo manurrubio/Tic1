@@ -14,11 +14,6 @@ public class Item {
     private long id;
     @Column(length = 25)
     private String type;
-    @ElementCollection
-    private List<String> color;
-    @ElementCollection
-    private List<String> size;
-    //HAY QUE RESOLVER LO DE LAS LIST
     @Column(length = 25)
     private String style;
     @Column(length = 100)
@@ -76,11 +71,9 @@ public class Item {
         this.stock = stock;
     }
 
-    public Item(long id, String type, List<String> color, List<String> size, String style, String description, int price, String category, Brand brand, Stock stock, Store store, Usuario usuario, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3, byte[] imagen4, byte[] imagen5) {
+    public Item(long id, String type, String style, String description, int price, String category, Brand brand, Stock stock, Store store, Usuario usuario, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3, byte[] imagen4, byte[] imagen5) {
         this.id = id;
         this.type = type;
-        this.color = color;
-        this.size = size;
         this.style = style;
         this.description = description;
         this.price = price;
@@ -111,22 +104,6 @@ public class Item {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public List<String> getColor() {
-        return color;
-    }
-
-    public void setColor(List<String> color) {
-        this.color = color;
-    }
-
-    public List<String> getSize() {
-        return size;
-    }
-
-    public void setSize(List<String> size) {
-        this.size = size;
     }
 
     public String getStyle() {

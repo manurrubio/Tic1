@@ -1,28 +1,34 @@
 package proyecto.tic.services.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Stock {
     @Id
     private String id;
+    @Id
+    @OneToOne()
+    @JoinColumn(name="item_id", referencedColumnName="id")
+    private Item item;
+    @Id
+    private String color;
+    @Id
+    private String talle;
+    @Id
+    private String store;
     @Column
     private Long cantidad;
-    @Column
-    private String color;
-    @Column
-    private String talle;
 
     public Stock() {
     }
 
-    public Stock(String id, Long cantidad, String color, String talle) {
+    public Stock(String id, Item item,String color, String talle, String store, Long cantidad) {
         this.id = id;
+        this.item=item;
         this.cantidad = cantidad;
         this.color = color;
         this.talle = talle;
+        this.store = store;
     }
 
     public String getId() {
@@ -56,4 +62,6 @@ public class Stock {
     public void setTalle(String talle) {
         this.talle = talle;
     }
+
+
 }

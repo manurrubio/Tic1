@@ -145,9 +145,6 @@ public class ApplicationProductController implements Initializable {
         }else{
             productBrand.setText(null);
         }
-        if(toShow.getSize()!=null){
-            productSize.setText("TALLE: " +toShow.getSize());
-        }
         if((Integer)toShow.getPrice()!=null){
             productPrice.setText("PRECIO: "+ ((Integer)toShow.getPrice()).toString());
         }
