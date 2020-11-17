@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="613.0" style="-fx-background-color: #f2fedc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.ApplicationLoginController">
+   <children>
+      <AnchorPane layoutX="25.0" layoutY="37.0" prefHeight="336.0" prefWidth="563.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="476.0" prefWidth="286.0" style="-fx-background-color: linear-gradient(to right bottom, #d16ba5, #c96bad, #c06cb4, #b56dbb, #a96fc1, #a175c8, #997bce, #9181d3, #8d8bda, #8995e0, #879fe6, #86a8ea); -fx-background-radius: 0.5cm;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" layoutX="94.0" layoutY="153.0" prefHeight="269.0" prefWidth="196.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label text="El team" textFill="#f4f9ff">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="N°1" textFill="#f4f9ff">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label text="del Sherman" textFill="#f4f9ff">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="261.0" layoutY="7.0" maxWidth="302.0" prefHeight="350.0" prefWidth="302.0" style="-fx-background-color: light grey; -fx-background-radius: 0.5cm;">
+               <children>
+                  <JFXTextField focusColor="#00c9ad" labelFloat="true" layoutX="61.0" layoutY="167.0" prefHeight="32.0" prefWidth="216.0" promptText="Cédula de identidad" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="25.0" />
+                  <JFXPasswordField focusColor="#00c9ad" labelFloat="true" layoutX="61.0" layoutY="224.0" prefHeight="32.0" prefWidth="216.0" promptText="Password" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="25.0" />
+                  <JFXButton fx:id="loginButton" layoutX="65.0" layoutY="278.0" onAction="#login" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #d16ba5; -fx-background-radius: 1cm;" text="Ingresar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <Label layoutX="59.0" layoutY="19.0" prefHeight="49.0" prefWidth="175.0" text="Bienvenido ">
+                     <font>
+                        <Font name="Calibri" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="59.0" layoutY="92.0" prefHeight="49.0" prefWidth="231.0" text="Ingrese cédula de identidad y ">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="volverButton" layoutX="184.0" layoutY="278.0" onAction="#volver" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #698eeb; -fx-background-radius: 1cm;" text="Volver">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <Label layoutX="60.0" layoutY="52.0" prefHeight="49.0" prefWidth="202.0" text="de nuevo">
+                     <font>
+                        <Font name="Calibri" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="59.0" layoutY="113.0" prefHeight="49.0" prefWidth="231.0" text="contraseña">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

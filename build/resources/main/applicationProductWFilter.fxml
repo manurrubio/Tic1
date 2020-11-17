@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.ApplicationProductWFilterController">
+    <children>
+        <BorderPane layoutX="-2.0" layoutY="103.0" prefHeight="310.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="103.0">
+            <center>
+                <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ScrollPane fx:id="scrollPane" prefHeight="274.0" prefWidth="594.0" style="-fx-background-color: #FFB896;">
+                            <content>
+                                <GridPane fx:id="grid" prefHeight="49.0" prefWidth="561.0" styleClass="scrollPane">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                </GridPane>
+                            </content>
+                     <opaqueInsets>
+                        <Insets left="20.0" />
+                     </opaqueInsets>
+                        </ScrollPane>
+                    </children>
+                </VBox>
+            </center>
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="74.0" text="F I L T R O S">
+                     <VBox.margin>
+                        <Insets left="17.0" />
+                     </VBox.margin>
+                  </Label>
+                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: transparent;" text="Color">
+                    <items>
+                        <CheckMenuItem mnemonicParsing="false" text="Blanco" />
+                        <CheckMenuItem mnemonicParsing="false" text="Negro" />
+                        <CheckMenuItem mnemonicParsing="false" text="Azul" />
+                        <CheckMenuItem mnemonicParsing="false" text="Rojo" />
+                        <CheckMenuItem mnemonicParsing="false" text="Gris" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: transparent;" text="Marcas">
+                     <items>
+                        <CheckMenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" text="Adidas" />
+                        <CheckMenuItem mnemonicParsing="false" text="Nike" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: transparent;" text="Talle">
+                     <items>
+                        <CheckMenuItem mnemonicParsing="false" text="XS" />
+                        <CheckMenuItem mnemonicParsing="false" text="S" />
+                        <CheckMenuItem mnemonicParsing="false" text="M" />
+                        <CheckMenuItem mnemonicParsing="false" text="L" />
+                        <CheckMenuItem mnemonicParsing="false" text="XL" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: transparent;" text="Prendas">
+                     <items>
+                        <CheckMenuItem mnemonicParsing="false" text="Blusas" />
+                        <CheckMenuItem mnemonicParsing="false" text="Camisas" />
+                     </items>
+                  </MenuButton>
+                  <JFXButton prefHeight="28.0" prefWidth="79.0" style="-fx-background-radius: 1cm; -fx-background-color: #66e3a9;" text="Filtrar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <VBox prefHeight="347.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
+         </right>
+        </BorderPane>
+      <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;">
+         <children>
+            <Button fx:id="modaH" layoutY="2.0" mnemonicParsing="false" onAction="#goToModaH" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: transparent;" text="Moda Hombre" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="684.0" AnchorPane.topAnchor="2.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="modaM" layoutX="107.0" layoutY="2.0" mnemonicParsing="false" onAction="#goToModaM" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Moda Mujer">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="modaN" layoutX="221.0" layoutY="2.0" mnemonicParsing="false" onAction="#goToModaN" prefHeight="32.0" prefWidth="81.0" style="-fx-background-color: transparent;" text="Moda Niño">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <HBox>
+         <children>
+            <Label prefHeight="40.0" prefWidth="96.0" text="Nombre app">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="3.0" right="13.0" top="15.0" />
+               </HBox.margin>
+            </Label>
+            <JFXTextField fx:id="search" focusColor="#ffb896" labelFloat="true" prefHeight="32.0" prefWidth="257.0" promptText="Búsqueda de marcas y productos">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <HBox.margin>
+                  <Insets top="16.0" />
+               </HBox.margin>
+            </JFXTextField>
+            <ImageView fx:id="searchButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons/icono-lupa.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="390.0">
+               <children>
+                  <JFXButton fx:id="loginButton" onAction="#login" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="Ingresar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="11.0" top="8.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="signInButton" onAction="#signIn" style="-fx-background-radius: 1cm; -fx-background-color: #FF6F91;" text="Registrarse">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="11.0" top="8.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <ImageView fx:id="carritoButton" accessibleRole="BUTTON" fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/icono-carrito.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="11.0" top="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>

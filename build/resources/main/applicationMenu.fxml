@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.ApplicationMenuController">
+   <children>
+      <HBox>
+         <children>
+            <Label prefHeight="40.0" prefWidth="96.0" text="Nombre app">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="3.0" right="13.0" top="15.0" />
+               </HBox.margin>
+            </Label>
+            <JFXTextField fx:id="search" focusColor="#ffb896" labelFloat="true" prefHeight="32.0" prefWidth="257.0" promptText="Búsqueda de marcas y productos">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <HBox.margin>
+                  <Insets top="16.0" />
+               </HBox.margin>
+            </JFXTextField>
+            <ImageView fx:id="searchButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons/icono-lupa.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="390.0">
+               <children>
+                  <JFXButton fx:id="loginButton" onAction="#login" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="Ingresar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="11.0" top="8.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="signInButton" onAction="#signIn" style="-fx-background-radius: 1cm; -fx-background-color: #FF6F91;" text="Registrarse">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="11.0" top="8.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <ImageView fx:id="carritoButton" accessibleRole="BUTTON" fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/icono-carrito.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="11.0" top="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;">
+         <children>
+            <JFXButton fx:id="modaH" layoutX="14.0" layoutY="1.0" onAction="#goToModaH" prefHeight="32.0" prefWidth="113.0" style="-fx-background-radius: 1cm; -fx-background-color: transparent;" text="Moda Hombre">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="modaM" layoutX="133.0" layoutY="1.0" onAction="#goToModaM" prefHeight="32.0" prefWidth="113.0" style="-fx-background-radius: 1cm; -fx-background-color: transparent;" text="Moda Mujer">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="modaN" layoutX="253.0" layoutY="1.0" onAction="#goToModaN" prefHeight="32.0" prefWidth="113.0" style="-fx-background-radius: 1cm; -fx-background-color: transparent;" text="Moda Niño">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <BorderPane layoutX="-2.0" layoutY="93.0" prefHeight="320.0" prefWidth="693.0" style="-fx-background-color: #FFE7FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
+         <top>
+            <Label prefHeight="21.0" prefWidth="187.0" text="M A R C A S" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Berlin Sans FB" size="31.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scrollPane" prefHeight="274.0" prefWidth="594.0" style="-fx-background-color: #FFB896;">
+                     <content>
+                        <GridPane fx:id="grid" prefHeight="49.0" prefWidth="561.0" styleClass="scrollPane">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </center>
+         <left>
+            <Label text="Hola" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Forte" size="19.0" />
+               </font></Label>
+         </left>
+         <bottom>
+            <Label text="Dani" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Mistral" size="24.0" />
+               </font></Label>
+         </bottom>
+         <right>
+            <Label prefHeight="17.0" prefWidth="15.0" text=":)" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="54.0" />
+               </font>
+            </Label>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>
