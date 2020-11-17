@@ -50,6 +50,14 @@
             </ImageView>
             <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="390.0">
                <children>
+                  <JFXButton fx:id="loginAdministrator" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="Administrador">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="11.0" top="8.0" />
+                     </HBox.margin>
+                  </JFXButton>
                   <JFXButton fx:id="loginButton" onAction="#login" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="Ingresar">
                      <cursor>
                         <Cursor fx:constant="HAND" />

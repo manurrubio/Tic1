@@ -71,6 +71,8 @@ public class ApplicationMenuController implements Initializable {
     @FXML
     private JFXButton signInButton;
     @FXML
+    private JFXButton loginAdministrator;
+    @FXML
     private GridPane grid;
     @FXML
     private ImageView toAdd;

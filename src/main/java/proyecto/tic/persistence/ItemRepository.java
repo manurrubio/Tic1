@@ -13,8 +13,6 @@ import java.util.Optional;
 public interface ItemRepository extends CrudRepository<Item, Long> , JpaSpecificationExecutor<Item> {
     List<Item> findByCategory(String category);
     List<Item> findByType(String type);
-    List<Item> findByColor(String color);
-    List<Item> findBySize(String size);
     List<Item> findByBrand(String brand);
     List<Item> findById(String id);
 }

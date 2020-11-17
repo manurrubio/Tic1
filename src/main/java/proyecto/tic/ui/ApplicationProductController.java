@@ -121,12 +121,6 @@ public class ApplicationProductController implements Initializable {
         }if(item.getImagen3()!=null){
             byte[] img= item.getImagen3();
             allImages.add(getImage(img));
-        }if(item.getImagen4()!=null){
-            byte[] img= item.getImagen4();
-            allImages.add(getImage(img));
-        }if(item.getImagen5()!=null){
-            byte[] img= item.getImagen5();
-            allImages.add(getImage(img));
         }
         return allImages;
     }

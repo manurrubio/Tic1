@@ -6,15 +6,11 @@ import javax.persistence.*;
 public class Stock {
     @Id
     private String id;
-    @Id
-    @OneToOne()
-    @JoinColumn(name="item_id", referencedColumnName="id")
-    private Item item;
-    @Id
+    @Column
     private String color;
-    @Id
+    @Column
     private String talle;
-    @Id
+    @Column
     private String store;
     @Column
     private Long cantidad;
@@ -22,9 +18,8 @@ public class Stock {
     public Stock() {
     }
 
-    public Stock(String id, Item item,String color, String talle, String store, Long cantidad) {
+    public Stock(String id,String color, String talle, String store, Long cantidad) {
         this.id = id;
-        this.item=item;
         this.cantidad = cantidad;
         this.color = color;
         this.talle = talle;

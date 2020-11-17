@@ -11,11 +11,11 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long id; //AUTOGENERADO
+    @Column(length = 25)
+    private String name;
     @Column(length = 25)
     private String type;
-    @Column(length = 25)
-    private String style;
     @Column(length = 100)
     private String description;
     private int price;
@@ -27,6 +27,7 @@ public class Item {
             inverseJoinColumns = @JoinColumn(name="BRAND_ID")
     )
     private Brand brand;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "ITEM_STOCK",
             joinColumns = @JoinColumn(name="ITEM_ID"),
@@ -40,13 +41,6 @@ public class Item {
             inverseJoinColumns = @JoinColumn(name="STORE_ID")
     )
     private Store store;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "ITEM_USUARIO",
-            joinColumns = @JoinColumn(name="ITEM_ID"),
-            inverseJoinColumns = @JoinColumn(name="USUARIO_ID")
-    )
-    private Usuario usuario;
     @Lob
     private byte[] imagenPrincipal;
     @Lob
@@ -55,10 +49,6 @@ public class Item {
     private byte[] imagen2;
     @Lob
     private byte[] imagen3;
-    @Lob
-    private byte[] imagen4;
-    @Lob
-    private byte[] imagen5;
 
     public Item() {
     }
@@ -71,23 +61,20 @@ public class Item {
         this.stock = stock;
     }
 
-    public Item(long id, String type, String style, String description, int price, String category, Brand brand, Stock stock, Store store, Usuario usuario, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3, byte[] imagen4, byte[] imagen5) {
+    public Item(long id, String name, String type, String description, int price, String category, Brand brand, Stock stock, Store store, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3) {
         this.id = id;
+        this.name= name;
         this.type = type;
-        this.style = style;
         this.description = description;
         this.price = price;
         this.category = category;
         this.brand = brand;
         this.stock = stock;
         this.store = store;
-        this.usuario = usuario;
         this.imagenPrincipal = imagenPrincipal;
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
         this.imagen3 = imagen3;
-        this.imagen4 = imagen4;
-        this.imagen5 = imagen5;
     }
 
     public long getId() {
@@ -98,20 +85,20 @@ public class Item {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getStyle() {
-        return style;
-    }
-
-    public void setStyle(String style) {
-        this.style = style;
     }
 
     public String getDescription() {
@@ -154,14 +141,6 @@ public class Item {
         this.store = store;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public byte[] getImagenPrincipal() {
         return imagenPrincipal;
     }
@@ -194,23 +173,8 @@ public class Item {
         this.imagen3 = imagen3;
     }
 
-    public byte[] getImagen4() {
-        return imagen4;
-    }
-
-    public void setImagen4(byte[] imagen4) {
-        this.imagen4 = imagen4;
-    }
-
-    public byte[] getImagen5() {
-        return imagen5;
-    }
-
-    public void setImagen5(byte[] imagen5) {
-        this.imagen5 = imagen5;
-    }
     public byte[][] getAllImages(){
-        return new byte[][]{imagenPrincipal, imagen1, imagen2, imagen3, imagen4, imagen5};
+        return new byte[][]{imagenPrincipal, imagen1, imagen2, imagen3};
     }
 
 }
