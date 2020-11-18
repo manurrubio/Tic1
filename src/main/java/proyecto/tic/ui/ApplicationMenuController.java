@@ -219,8 +219,6 @@ public class ApplicationMenuController implements Initializable {
         window.show();
     }
 
-
-
     @FXML
     private void goToModaH(ActionEvent event) throws IOException {
         ap.setAtributo("hombre");

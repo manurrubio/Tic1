@@ -5,19 +5,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.ApplicationMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.AddProductController">
    <children>
       <HBox>
          <children>
@@ -109,53 +104,67 @@
          </children>
       </AnchorPane>
       <BorderPane layoutX="-2.0" layoutY="93.0" prefHeight="320.0" prefWidth="693.0" style="-fx-background-color: #FFE7FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
-         <top>
-            <Label prefHeight="21.0" prefWidth="187.0" text="M A R C A S" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Berlin Sans FB" size="31.0" />
-               </font>
-            </Label>
-         </top>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <AnchorPane maxWidth="753.0" prefHeight="357.0" prefWidth="753.0" style="-fx-background-color: light grey; -fx-background-radius: 0.5cm;" BorderPane.alignment="CENTER">
                <children>
-                  <ScrollPane fx:id="scrollPane" prefHeight="274.0" prefWidth="594.0" style="-fx-background-color: #FFB896;">
-                     <content>
-                        <GridPane fx:id="grid" prefHeight="49.0" prefWidth="561.0" styleClass="scrollPane">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
+                  <JFXTextField fx:id="itemName" focusColor="#00c9ad" labelFloat="true" layoutX="7.0" layoutY="65.0" prefHeight="32.0" prefWidth="330.0" promptText="Nombre del producto" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="422.0">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </JFXTextField>
+                  <JFXButton fx:id="siguienteButton" layoutX="71.0" layoutY="302.0" onAction="#signIn" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #d16ba5; -fx-background-radius: 1cm;" text="Siguiente">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label layoutX="12.0" layoutY="5.0" prefHeight="49.0" prefWidth="331.0" text="Ingrese el producto">
+                     <font>
+                        <Font name="Calibri" size="36.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="volverButton" layoutX="305.0" layoutY="302.0" onAction="#volver" prefHeight="32.0" prefWidth="103.0" style="-fx-background-color: #698eeb; -fx-background-radius: 1cm;" text="Volver">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXTextField fx:id="itemDescription" focusColor="#00c9ad" labelFloat="true" layoutX="6.0" layoutY="123.0" prefHeight="32.0" prefWidth="330.0" promptText="Descripción ">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </JFXTextField>
+                  <JFXTextField fx:id="itemPrice" focusColor="#00c9ad" labelFloat="true" layoutX="402.0" layoutY="123.0" prefHeight="32.0" prefWidth="330.0" promptText="Precio">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </JFXTextField>
+                  <JFXTextField fx:id="itemBrand" focusColor="#00c9ad" labelFloat="true" layoutX="402.0" layoutY="185.0" prefHeight="32.0" prefWidth="330.0" promptText="Marca">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </JFXTextField>
+                  <JFXTextField fx:id="itemCategory" focusColor="#00c9ad" labelFloat="true" layoutX="4.0" layoutY="185.0" prefHeight="32.0" prefWidth="330.0" promptText="Categoría (hombre, mujer o niño)">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </JFXTextField>
+                  <JFXTextField fx:id="itemType" focusColor="#00c9ad" labelFloat="true" layoutX="402.0" layoutY="65.0" prefHeight="32.0" prefWidth="330.0" promptText="Tipo (remera, buzo, pantalón, etc)">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </JFXTextField>
+                  <JFXTextField fx:id="itemStock" focusColor="#00c9ad" labelFloat="true" layoutX="6.0" layoutY="245.0" prefHeight="32.0" prefWidth="330.0" promptText="Stock disponible">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </JFXTextField>
+                  <JFXTextField fx:id="itemStock" focusColor="#00c9ad" labelFloat="true" layoutX="402.0" layoutY="245.0" prefHeight="32.0" prefWidth="330.0" promptText="Tienda">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </JFXTextField>
                </children>
-            </VBox>
+            </AnchorPane>
          </center>
-         <left>
-            <Label text="Hola" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Forte" size="19.0" />
-               </font></Label>
-         </left>
-         <bottom>
-            <Label text="Dani" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Mistral" size="24.0" />
-               </font></Label>
-         </bottom>
-         <right>
-            <Label prefHeight="17.0" prefWidth="15.0" text=":)" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Arial Bold" size="54.0" />
-               </font>
-            </Label>
-         </right>
       </BorderPane>
    </children>
 </AnchorPane>

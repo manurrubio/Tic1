@@ -53,6 +53,8 @@ proyecto/tic/services/exceptions/AdminNotExist.java
  proyecto.tic.services.exceptions.AdminNotExist
 proyecto/tic/services/exceptions/StoreNotExist.java
  proyecto.tic.services.exceptions.StoreNotExist
+proyecto/tic/ui/AddProductController.java
+ proyecto.tic.ui.AddProductController
 proyecto/tic/services/BrandService.java
  proyecto.tic.services.BrandService
 proyecto/tic/services/exceptions/ClientAlreadyExists.java
