@@ -216,7 +216,7 @@ public class ApplicationMenuController implements Initializable {
     private void addProduct(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProduct.fxml"));
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProductI.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(paginaInicio);
@@ -225,7 +225,6 @@ public class ApplicationMenuController implements Initializable {
 
     @FXML
     void addBrand(ActionEvent event) {
-
     }
 
     @FXML

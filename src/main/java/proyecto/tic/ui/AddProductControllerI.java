@@ -18,10 +18,13 @@ import proyecto.tic.ApplicationFX;
 import java.io.IOException;
 
 @Component
-@FxmlView("/applicationAddProduct.fxml")
+@FxmlView("/applicationAddProductI.fxml")
 public class AddProductControllerI {
     @Autowired
     private ApplicationProductWFilterController ap;
+
+    @Autowired
+    private AddProductControllerII apii;
 
     @FXML
     private JFXTextField search;
@@ -79,6 +82,14 @@ public class AddProductControllerI {
         int iPrice= Integer.parseInt(itemPrice.getText());
         String iCat= itemCategory.getText();
         String iBrand= itemBrand.getText();
+        apii.setAtributos(iName,iType,iDesc,iPrice,iCat,iBrand);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProductII.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
     }
 
     @FXML
@@ -153,4 +164,6 @@ public class AddProductControllerI {
         window.setScene(paginaInicio);
         window.show();
     }
+
+
 }
