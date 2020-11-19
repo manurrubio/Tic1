@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,15 +13,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -32,16 +25,12 @@ import proyecto.tic.ApplicationFX;
 import proyecto.tic.services.BrandService;
 import proyecto.tic.services.ItemService;
 import proyecto.tic.services.entities.Brand;
-import proyecto.tic.services.entities.Item;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -71,7 +60,11 @@ public class ApplicationMenuController implements Initializable {
     @FXML
     private JFXButton signInButton;
     @FXML
-    private JFXButton loginAdministrator;
+    private JFXButton signInButtonAdmiButton;
+    @FXML
+    private JFXButton addProductButton;
+    @FXML
+    private JFXButton addBrandButton;
     @FXML
     private GridPane grid;
     @FXML
@@ -217,6 +210,27 @@ public class ApplicationMenuController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(paginaInicio);
         window.show();
+    }
+
+    @FXML
+    private void addProduct(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProduct.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
+    }
+
+    @FXML
+    void addBrand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void signInAdmi(ActionEvent event) {
+
     }
 
     @FXML

@@ -18,8 +18,8 @@ import proyecto.tic.ApplicationFX;
 import java.io.IOException;
 
 @Component
-@FxmlView("/addProductController.fxml")
-public class AddProductController {
+@FxmlView("/applicationAddProduct.fxml")
+public class AddProductControllerI {
     @Autowired
     private ApplicationProductWFilterController ap;
 
@@ -28,9 +28,6 @@ public class AddProductController {
 
     @FXML
     private ImageView searchButton;
-
-    @FXML
-    private JFXButton loginAdministrator;
 
     @FXML
     private JFXButton loginButton;
@@ -75,7 +72,14 @@ public class AddProductController {
     private JFXTextField itemType;
 
     @FXML
-    private JFXTextField itemStock;
+    private void next(ActionEvent event) throws IOException{
+        String iName= itemName.getText();
+        String iType= itemType.getText();
+        String iDesc= itemDescription.getText();
+        int iPrice= Integer.parseInt(itemPrice.getText());
+        String iCat= itemCategory.getText();
+        String iBrand= itemBrand.getText();
+    }
 
     @FXML
     private void login(ActionEvent event) throws IOException {
@@ -140,7 +144,13 @@ public class AddProductController {
     }
 
     @FXML
-    void volver(ActionEvent event) {
-
+    void volver(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
     }
 }

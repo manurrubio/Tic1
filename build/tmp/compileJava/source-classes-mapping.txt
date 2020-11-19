@@ -6,6 +6,8 @@ proyecto/tic/services/UsuarioService.java
  proyecto.tic.services.UsuarioService
 proyecto/tic/services/rmi/BrandManager.java
  proyecto.tic.services.rmi.BrandManager
+proyecto/tic/ui/AddProductControllerI.java
+ proyecto.tic.ui.AddProductControllerI
 proyecto/tic/services/rmi/UsuarioManager.java
  proyecto.tic.services.rmi.UsuarioManager
 proyecto/tic/persistence/UsuarioRepository.java
@@ -53,8 +55,6 @@ proyecto/tic/services/exceptions/AdminNotExist.java
  proyecto.tic.services.exceptions.AdminNotExist
 proyecto/tic/services/exceptions/StoreNotExist.java
  proyecto.tic.services.exceptions.StoreNotExist
-proyecto/tic/ui/AddProductController.java
- proyecto.tic.ui.AddProductController
 proyecto/tic/services/BrandService.java
  proyecto.tic.services.BrandService
 proyecto/tic/services/exceptions/ClientAlreadyExists.java
@@ -67,6 +67,8 @@ proyecto/tic/TicApplication.java
  proyecto.tic.TicApplication
 proyecto/tic/services/entities/Item.java
  proyecto.tic.services.entities.Item
+proyecto/tic/ui/AddProductControllerII.java
+ proyecto.tic.ui.AddProductControllerII
 proyecto/tic/persistence/StockRepository.java
  proyecto.tic.persistence.StockRepository
 proyecto/tic/services/rmi/StockManager.java
