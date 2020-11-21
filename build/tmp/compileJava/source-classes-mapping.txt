@@ -14,6 +14,8 @@ proyecto/tic/services/entities/ItemSpecification.java
  proyecto.tic.services.entities.ItemSpecification
 proyecto/tic/ui/admi/AddProductControllerII.java
  proyecto.tic.ui.admi.AddProductControllerII
+proyecto/tic/ui/admi/AddBrandController.java
+ proyecto.tic.ui.admi.AddBrandController
 proyecto/tic/services/exceptions/BrandNotExist.java
  proyecto.tic.services.exceptions.BrandNotExist
 proyecto/tic/services/entities/Store.java

@@ -134,13 +134,12 @@ public class AddProductControllerII  {
 
     @FXML
     void addProduct(ActionEvent event) throws InvalidInformation, ItemAlreadyExists, BrandNotExist, IOException {
-        int id=0;
         //Brand brand= bs.getBrand(itemBrand); todavia no hay marcas
         Brand brand= new Brand();
         Long iStock= Long.valueOf(itemStock.getText());
         Stock stock= new Stock("nproducto+ color +talle","color","L", "Store", iStock);
         Store store= new Store();
-        Item item= new Item(id,itemName,itemType,itemDescription,itemPrice,itemCategory,brand,stock,store,null,null,null,null);
+        Item item= new Item(itemName,itemType,itemDescription,itemPrice,itemCategory,brand,stock,store,null,null,null,null);
         is.addItem(item);
 
         FXMLLoader fxmlLoader = new FXMLLoader();

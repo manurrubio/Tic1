@@ -18,8 +18,9 @@ public class Brand {
     @ManyToMany(mappedBy = "brands")
     private Set<Store> stores;
 
-    public Brand(String name) {
+    public Brand(String name, byte[] brandImage) {
         this.name = name;
+        this.brandImage=brandImage;
         this.stores = new HashSet<>();
     }
 

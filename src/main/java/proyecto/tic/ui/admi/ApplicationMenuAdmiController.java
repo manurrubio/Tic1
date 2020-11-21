@@ -31,8 +31,14 @@ public class ApplicationMenuAdmiController implements Initializable {
     private JFXButton addStoreButton;
 
     @FXML
-    void addBrand(ActionEvent event) {
-
+    void addBrand(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddBrand.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
     }
 
     @FXML

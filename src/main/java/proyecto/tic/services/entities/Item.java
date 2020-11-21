@@ -61,7 +61,7 @@ public class Item {
         this.stock = stock;
     }
 
-    public Item(long id, String name, String type, String description, int price, String category, Brand brand, Stock stock, Store store, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3) {
+    public Item(String name, String type, String description, int price, String category, Brand brand, Stock stock, Store store, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3) {
         this.id = id;
         this.name= name;
         this.type = type;
