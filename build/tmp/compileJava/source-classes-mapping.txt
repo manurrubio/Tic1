@@ -6,27 +6,28 @@ proyecto/tic/services/UsuarioService.java
  proyecto.tic.services.UsuarioService
 proyecto/tic/services/rmi/BrandManager.java
  proyecto.tic.services.rmi.BrandManager
-proyecto/tic/ui/AddProductControllerI.java
- proyecto.tic.ui.AddProductControllerI
 proyecto/tic/services/rmi/UsuarioManager.java
  proyecto.tic.services.rmi.UsuarioManager
 proyecto/tic/persistence/UsuarioRepository.java
  proyecto.tic.persistence.UsuarioRepository
 proyecto/tic/services/entities/ItemSpecification.java
  proyecto.tic.services.entities.ItemSpecification
+proyecto/tic/ui/admi/AddProductControllerII.java
+ proyecto.tic.ui.admi.AddProductControllerII
 proyecto/tic/services/exceptions/BrandNotExist.java
  proyecto.tic.services.exceptions.BrandNotExist
 proyecto/tic/services/entities/Store.java
  proyecto.tic.services.entities.Store
+proyecto/tic/ui/client/ApplicationLoginController.java
+ proyecto.tic.ui.client.ApplicationLoginController
 proyecto/tic/persistence/StoreRepository.java
  proyecto.tic.persistence.StoreRepository
 proyecto/tic/services/exceptions/InvalidInformation.java
  proyecto.tic.services.exceptions.InvalidInformation
 proyecto/tic/services/rmi/ItemSpecification.java
  proyecto.tic.services.rmi.ItemSpecification
-proyecto/tic/ui/ApplicationProductController.java
- proyecto.tic.ui.ApplicationProductController
- proyecto.tic.ui.ApplicationProductController$1
+proyecto/tic/AApplicationFX.java
+ proyecto.tic.AApplicationFX
 proyecto/tic/persistence/BrandRepository.java
  proyecto.tic.persistence.BrandRepository
 proyecto/tic/services/StoreService.java
@@ -39,8 +40,12 @@ proyecto/tic/services/exceptions/AdminAlreadyExists.java
  proyecto.tic.services.exceptions.AdminAlreadyExists
 proyecto/tic/services/exceptions/StoreAlreadyExists.java
  proyecto.tic.services.exceptions.StoreAlreadyExists
-proyecto/tic/ui/ApplicationLoginController.java
- proyecto.tic.ui.ApplicationLoginController
+proyecto/tic/ui/client/ApplicationProductWFilterController.java
+ proyecto.tic.ui.client.ApplicationProductWFilterController
+ proyecto.tic.ui.client.ApplicationProductWFilterController$1
+ proyecto.tic.ui.client.ApplicationProductWFilterController$2
+proyecto/tic/ui/admi/ApplicationMenuAdmiController.java
+ proyecto.tic.ui.admi.ApplicationMenuAdmiController
 proyecto/tic/services/entities/Stock.java
  proyecto.tic.services.entities.Stock
 proyecto/tic/persistence/ItemRepository.java
@@ -49,6 +54,8 @@ proyecto/tic/services/ItemService.java
  proyecto.tic.services.ItemService
 proyecto/tic/services/StockService.java
  proyecto.tic.services.StockService
+proyecto/tic/services/exceptions/ItemAlreadyExists.java
+ proyecto.tic.services.exceptions.ItemAlreadyExists
 proyecto/tic/services/entities/Brand.java
  proyecto.tic.services.entities.Brand
 proyecto/tic/services/exceptions/AdminNotExist.java
@@ -59,29 +66,30 @@ proyecto/tic/services/BrandService.java
  proyecto.tic.services.BrandService
 proyecto/tic/services/exceptions/ClientAlreadyExists.java
  proyecto.tic.services.exceptions.ClientAlreadyExists
-proyecto/tic/ui/ApplicationProductWFilterController.java
- proyecto.tic.ui.ApplicationProductWFilterController
- proyecto.tic.ui.ApplicationProductWFilterController$1
- proyecto.tic.ui.ApplicationProductWFilterController$2
-proyecto/tic/TicApplication.java
- proyecto.tic.TicApplication
 proyecto/tic/services/entities/Item.java
  proyecto.tic.services.entities.Item
-proyecto/tic/ui/AddProductControllerII.java
- proyecto.tic.ui.AddProductControllerII
+proyecto/tic/ui/client/ApplicationMenuController.java
+ proyecto.tic.ui.client.ApplicationMenuController
+proyecto/tic/CApplicationFX.java
+ proyecto.tic.CApplicationFX
+proyecto/tic/ClientApp.java
+ proyecto.tic.ClientApp
 proyecto/tic/persistence/StockRepository.java
  proyecto.tic.persistence.StockRepository
 proyecto/tic/services/rmi/StockManager.java
  proyecto.tic.services.rmi.StockManager
-proyecto/tic/ApplicationFX.java
- proyecto.tic.ApplicationFX
-proyecto/tic/ui/ApplicationMenuController.java
- proyecto.tic.ui.ApplicationMenuController
+proyecto/tic/ui/client/ApplicationSignInController.java
+ proyecto.tic.ui.client.ApplicationSignInController
+proyecto/tic/ui/admi/AddProductControllerI.java
+ proyecto.tic.ui.admi.AddProductControllerI
 proyecto/tic/services/entities/Usuario.java
  proyecto.tic.services.entities.Usuario
 proyecto/tic/services/rmi/StoreManager.java
  proyecto.tic.services.rmi.StoreManager
-proyecto/tic/ui/ApplicationSignInController.java
- proyecto.tic.ui.ApplicationSignInController
+proyecto/tic/ui/client/ApplicationProductController.java
+ proyecto.tic.ui.client.ApplicationProductController
+ proyecto.tic.ui.client.ApplicationProductController$1
+proyecto/tic/AdmiApp.java
+ proyecto.tic.AdmiApp
 proyecto/tic/services/entities/Client.java
  proyecto.tic.services.entities.Client

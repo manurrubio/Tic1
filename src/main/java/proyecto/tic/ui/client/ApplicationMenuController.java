@@ -1,4 +1,4 @@
-package proyecto.tic.ui;
+package proyecto.tic.ui.client;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import proyecto.tic.ApplicationFX;
+import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.BrandService;
 import proyecto.tic.services.ItemService;
 import proyecto.tic.services.entities.Brand;
@@ -59,12 +59,6 @@ public class ApplicationMenuController implements Initializable {
     private JFXButton loginButton;
     @FXML
     private JFXButton signInButton;
-    @FXML
-    private JFXButton signInButtonAdmiButton;
-    @FXML
-    private JFXButton addProductButton;
-    @FXML
-    private JFXButton addBrandButton;
     @FXML
     private GridPane grid;
     @FXML
@@ -191,7 +185,7 @@ public class ApplicationMenuController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -204,7 +198,7 @@ public class ApplicationMenuController implements Initializable {
     @FXML
     private void signIn(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationSignIn.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -213,30 +207,10 @@ public class ApplicationMenuController implements Initializable {
     }
 
     @FXML
-    private void addProduct(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProductI.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
-    }
-
-    @FXML
-    void addBrand(ActionEvent event) {
-    }
-
-    @FXML
-    void signInAdmi(ActionEvent event) {
-
-    }
-
-    @FXML
     private void goToModaH(ActionEvent event) throws IOException {
         ap.setAtributo("hombre");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -248,7 +222,7 @@ public class ApplicationMenuController implements Initializable {
     private void goToModaM(ActionEvent event) throws IOException {
         ap.setAtributo("mujer");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
         ApplicationProductWFilterController controller = fxmlLoader.getController();
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
@@ -261,7 +235,7 @@ public class ApplicationMenuController implements Initializable {
     private void goToModaN(ActionEvent event) throws IOException {
         ap.setAtributo("niño");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
         ApplicationProductWFilterController controller = fxmlLoader.getController();
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);

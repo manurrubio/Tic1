@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.admi.ApplicationMenuAdmiController">
+   <children>
+      <HBox>
+         <children>
+            <Label prefHeight="40.0" prefWidth="96.0" text="Nombre app">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="3.0" right="13.0" top="15.0" />
+               </HBox.margin>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="668.0" />
+         </children>
+      </HBox>
+      <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;">
+         <children>
+            <Label layoutX="303.0" layoutY="2.0" prefHeight="21.0" prefWidth="187.0" text="Bienvenido/a">
+               <font>
+                  <Font name="Berlin Sans FB" size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <BorderPane layoutX="-2.0" layoutY="93.0" prefHeight="320.0" prefWidth="693.0" style="-fx-background-color: #FFE7FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="307.0" prefWidth="698.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="addProductButton" onAction="#addProduct" prefHeight="61.0" prefWidth="232.0" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="INGRESAR PRODUCTO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="addBrandButton" onAction="#addBrand" prefHeight="61.0" prefWidth="232.0" style="-fx-background-radius: 1cm; -fx-background-color: #FF6F91;" text="INGRESAR MARCA">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="addStoreButton" onAction="#addStore" prefHeight="61.0" prefWidth="232.0" style="-fx-background-radius: 1cm; -fx-background-color: #d16ba5;" text="INGRESAR TIENDA">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </center>
+         <left>
+            <Label text="        " BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Forte" size="19.0" />
+               </font>
+            </Label>
+         </left>
+         <right>
+            <Label text="        " BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Forte" size="19.0" />
+               </font>
+            </Label>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -2,7 +2,6 @@ package proyecto.tic;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -11,15 +10,11 @@ import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-import proyecto.tic.ui.ApplicationMenuController;
-import proyecto.tic.ui.ApplicationSignInController;
-
-import java.io.IOException;
-
+import proyecto.tic.ui.client.ApplicationMenuController;
 
 
 @SpringBootApplication
-public class ApplicationFX extends Application {
+public class CApplicationFX extends Application {
 
 
     private static ConfigurableApplicationContext applicationContext;
@@ -34,7 +29,7 @@ public class ApplicationFX extends Application {
         String[] args = getParameters().getRaw().toArray(new String[0]);
 
         this.applicationContext = new SpringApplicationBuilder()
-                .sources(TicApplication.class)
+                .sources(ClientApp.class)
                 .run(args);
     }
 

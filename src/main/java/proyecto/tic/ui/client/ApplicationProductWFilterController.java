@@ -1,4 +1,4 @@
-package proyecto.tic.ui;
+package proyecto.tic.ui.client;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import proyecto.tic.ApplicationFX;
+import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.ItemService;
 import proyecto.tic.services.UsuarioService;
 import proyecto.tic.services.entities.Item;
@@ -31,7 +31,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -116,7 +115,7 @@ public class ApplicationProductWFilterController  implements Initializable{
                         Item item = allItems.get(finalI);
 
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+                        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
                         Parent inicioSesion = null;
                         try {
                             pc.setItem(item);
@@ -151,7 +150,7 @@ public class ApplicationProductWFilterController  implements Initializable{
     @FXML
     private void login(ActionEvent event) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader();
-    fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+    fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
     Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
     Scene paginaInicio = new Scene(inicioSesion, 780, 450);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -164,7 +163,7 @@ public class ApplicationProductWFilterController  implements Initializable{
     @FXML
     private void signIn(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationSignIn.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -218,7 +217,7 @@ public class ApplicationProductWFilterController  implements Initializable{
                         Item item = allItems.get(finalI);
 
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+                        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
                         Parent inicioSesion = null;
                         try {
                             inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProduct.fxml"));

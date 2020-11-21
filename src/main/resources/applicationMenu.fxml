@@ -5,9 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.ApplicationMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.client.ApplicationMenuController">
    <children>
       <HBox>
          <children>
@@ -53,44 +50,6 @@
             </ImageView>
             <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="390.0">
                <children>
-                  <MenuBar style="-fx-background-color: transparent; -fx-background-radius: 1cm;">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="Administración">
-                           <items>
-                              <MenuItem mnemonicParsing="false">
-                                 <graphic>
-                                    <JFXButton fx:id="signInButtonAdmiButton" onAction="#signInAdmi" style="-fx-background-radius: 1cm; -fx-background-color: #FFB896;" text="Registrarse">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </JFXButton>
-                                 </graphic>
-                              </MenuItem>
-                              <MenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" />
-                              <MenuItem mnemonicParsing="false" style="-fx-background-color: transparent;">
-                                 <graphic>
-                                    <JFXButton fx:id="addBrandButton" onAction="#addBrand" style="-fx-background-radius: 1cm; -fx-background-color: #FFB896;" text="Agregar Marca">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </JFXButton>
-                                 </graphic>
-                              </MenuItem>
-                           </items>
-                      </Menu>
-                    </menus>
-                     <HBox.margin>
-                        <Insets right="11.0" top="8.0" />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuBar>
-                  <JFXButton fx:id="addProductButton" onAction="#addProduct" style="-fx-background-radius: 1cm; -fx-background-color: #FFB896;" text="Agregar Producto">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </JFXButton>
                   <JFXButton fx:id="loginButton" onAction="#login" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="Ingresar">
                      <cursor>
                         <Cursor fx:constant="HAND" />

@@ -1,4 +1,4 @@
-package proyecto.tic.ui;
+package proyecto.tic.ui.client;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import proyecto.tic.ApplicationFX;
+import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.UsuarioService;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class ApplicationLoginController {
     @FXML
     private void volver(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
