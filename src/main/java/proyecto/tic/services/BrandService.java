@@ -36,11 +36,8 @@ public class BrandService implements BrandManager {
     }
 
     @Override
-    public Brand getBrand(String name) throws BrandNotExist { // Funcion por si el admin quiere obtener la marca (creo que podriamos borrar esta pero ta la deamos por las dudas)
+    public Brand getBrand(String name) throws BrandNotExist {
         Brand brand  = brandRepository.findOneByName(name);
-        if(brand == null){
-            throw new BrandNotExist();
-        }
         return brand;
     }
 
@@ -49,5 +46,7 @@ public class BrandService implements BrandManager {
         Brand brandExistente = brandRepository.findOneByName(brand.getName());
         brandExistente.setBrandImage(brand.getBrandImage());
         brandRepository.save(brandExistente);
+
+
     }
 }

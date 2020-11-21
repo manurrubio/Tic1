@@ -13,19 +13,28 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import proyecto.tic.AApplicationFX;
+import proyecto.tic.services.BrandService;
+import proyecto.tic.services.entities.Brand;
+import proyecto.tic.services.exceptions.BrandAlreadyExists;
+import proyecto.tic.services.exceptions.BrandNotExist;
+import proyecto.tic.services.exceptions.InvalidInformation;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 
 @Component
 @FxmlView("/applicationAddBrand.fxml")
 public class AddBrandController {
+    @Autowired
+    private BrandService bs;
 
     @FXML
-    private JFXTextField itemName;
+    private JFXTextField brandName;
 
     @FXML
     private JFXButton addBrandButton;
@@ -45,23 +54,50 @@ public class AddBrandController {
     @FXML
     private AnchorPane anchorPane;
 
-    private File iFile;
+    private byte[] pic;
 
     @FXML
-    void addBrand(ActionEvent event) {
-        brandAlreadyExists.setText("Marca ya existe");
-        imageNotFound.setText("Imagen no ingresada");
+    void addBrand(ActionEvent event) throws BrandNotExist, BrandAlreadyExists, InvalidInformation {
+        boolean next=true;
+        String bName= brandName.getText();
+        if(bs.getBrand(bName)!=null){
+            next=false;
+            brandAlreadyExists.setText("Marca ya existe");
+        }
+        if(bName==null){
+            next=false;
+        }
+        if(pic==null){
+            next=false;
+            imageNotFound.setText("Imagen no ingresada");
+        }
+        if(next==true){
+            Brand toAdd= new Brand(bName,pic);
+            bs.addBrand(toAdd);
+        }
+
     }
 
     @FXML
-    void insertLogo(ActionEvent event) {
+    void insertLogo(ActionEvent event) throws IOException {
         FileChooser fileChooser=new FileChooser();
         fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
 
         File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
 
-        this.iFile=file;
+        this.pic= Files.readAllBytes(file.toPath());
 
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
     }
 
     @FXML

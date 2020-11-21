@@ -74,9 +74,6 @@ public class AddProductControllerII  {
     private JFXTextField itemColor;
 
     @FXML
-    private JFXTextField itemStore;
-
-    @FXML
     private JFXButton pic4;
 
     @FXML
@@ -152,29 +149,6 @@ public class AddProductControllerII  {
 
     }
 
-    @FXML
-    private void login(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
-
-
-    }
-
-    @FXML
-    private void signIn(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationSignIn.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
-    }
 
     @FXML
     private void goToModaH(ActionEvent event) throws IOException {

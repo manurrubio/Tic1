@@ -5,8 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -24,56 +22,6 @@
                   <Insets left="3.0" right="13.0" top="15.0" />
                </HBox.margin>
             </Label>
-            <JFXTextField fx:id="search" focusColor="#ffb896" labelFloat="true" prefHeight="32.0" prefWidth="257.0" promptText="Búsqueda de marcas y productos">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <HBox.margin>
-                  <Insets top="16.0" />
-               </HBox.margin>
-            </JFXTextField>
-            <ImageView fx:id="searchButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/icons/icono-lupa.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <HBox.margin>
-                  <Insets top="20.0" />
-               </HBox.margin>
-            </ImageView>
-            <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="390.0">
-               <children>
-                  <JFXButton fx:id="loginButton" onAction="#login" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="Ingresar">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <HBox.margin>
-                        <Insets right="11.0" top="8.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="signInButton" onAction="#signIn" style="-fx-background-radius: 1cm; -fx-background-color: #FF6F91;" text="Registrarse">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <HBox.margin>
-                        <Insets right="11.0" top="8.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <ImageView fx:id="carritoButton" accessibleRole="BUTTON" fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/icons/icono-carrito.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <HBox.margin>
-                        <Insets right="11.0" top="8.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
          </children>
       </HBox>
       <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;">
@@ -124,32 +72,27 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </JFXTextField>
-                  <JFXTextField fx:id="itemStore" focusColor="#00c9ad" labelFloat="true" layoutX="4.0" layoutY="184.0" prefHeight="32.0" prefWidth="330.0" promptText="Tienda/s">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </JFXTextField>
                   <Label layoutX="12.0" layoutY="37.0" prefHeight="49.0" prefWidth="722.0" text="Separe los distintos talles, colores y tiendas con una coma">
                      <font>
                         <Font name="Calibri" size="20.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="pic4" layoutX="598.0" layoutY="244.0" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #FFB896; -fx-background-radius: 1cm;" text="Imagen">
+                  <JFXButton fx:id="pic4" layoutX="598.0" layoutY="244.0" onAction="#getPic4" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #FFB896; -fx-background-radius: 1cm;" text="Imagen">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="pic2" layoutX="598.0" layoutY="185.0" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #FFB896; -fx-background-radius: 1cm;" text="Imagen">
+                  <JFXButton fx:id="pic2" layoutX="598.0" layoutY="185.0" onAction="#getPic2" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #FFB896; -fx-background-radius: 1cm;" text="Imagen">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="pic1" layoutX="429.0" layoutY="185.0" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #FFB896; -fx-background-radius: 1cm;" text="Imagen Principal">
+                  <JFXButton fx:id="pic1" layoutX="429.0" layoutY="185.0" onAction="#getPic1" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #FFB896; -fx-background-radius: 1cm;" text="Imagen Principal">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="pic3" layoutX="429.0" layoutY="244.0" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #FFB896; -fx-background-radius: 1cm;" text="Imagen">
+                  <JFXButton fx:id="pic3" layoutX="429.0" layoutY="244.0" onAction="#getPic3" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #FFB896; -fx-background-radius: 1cm;" text="Imagen">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -159,7 +102,7 @@
                         <Font name="Calibri" size="20.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="itemStock" focusColor="#00c9ad" labelFloat="true" layoutX="6.0" layoutY="245.0" prefHeight="32.0" prefWidth="330.0" promptText="Stock">
+                  <JFXTextField fx:id="itemStock" focusColor="#00c9ad" labelFloat="true" layoutX="6.0" layoutY="204.0" prefHeight="32.0" prefWidth="330.0" promptText="Stock">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>

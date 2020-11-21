@@ -35,11 +35,9 @@ public class StoreService implements StoreManager {
     }
 
     @Override
-    public Store getStore(String name) throws StoreNotExist {
+    public Store getStore(String name) {
         Store store = storeRepository.findOneByName(name);
-        if(store == null){
-            throw new StoreNotExist();
-        }
+
         return store;
     }
 
