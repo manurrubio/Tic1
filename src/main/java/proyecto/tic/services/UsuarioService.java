@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import proyecto.tic.persistence.UsuarioRepository;
 import proyecto.tic.services.entities.Admin;
 import proyecto.tic.services.entities.Client;
+import proyecto.tic.services.entities.Usuario;
 import proyecto.tic.services.exceptions.*;
 import proyecto.tic.services.rmi.UsuarioManager;
 
@@ -47,6 +48,11 @@ public class UsuarioService implements UsuarioManager {
 
         usuarioRepository.save(administrador);
 
+    }
+
+    public Usuario getUsuario(int ci){
+        Usuario usuario= usuarioRepository.findOneByCi(ci);
+        return usuario;
     }
 
 /*    @Override

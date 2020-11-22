@@ -133,7 +133,7 @@ public class AddProductControllerII  {
         is.addItem(item);
         for(int i=0; i<colors.length;i++){
             for(int j=0; j<sizes.length;j++){
-                Stock stock= new Stock(itemName + itemStore.getName() + colors[i] +sizes[j],colors[i],sizes[j], itemStore.getId(), iStock,item);
+                Stock stock= new Stock(itemName+ " " + itemStore.getName() +" " + colors[i] +" " +sizes[j],colors[i],sizes[j], itemStore.getId(), iStock,item);
                 stockService.addStock(stock);
             }
         }

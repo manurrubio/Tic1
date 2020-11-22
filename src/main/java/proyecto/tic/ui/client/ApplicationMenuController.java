@@ -25,6 +25,7 @@ import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.BrandService;
 import proyecto.tic.services.ItemService;
 import proyecto.tic.services.entities.Brand;
+import proyecto.tic.services.entities.Usuario;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -49,6 +50,8 @@ public class ApplicationMenuController implements Initializable {
     private ApplicationProductController pc;
     @Autowired
     private ItemService is;
+
+    private Usuario usuario=null;
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -119,6 +122,9 @@ public class ApplicationMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (usuario!=null){
+            loginButton.disableVisualFocusProperty();
+        }
         /*
            --CODIGO PARA TABLA--
         c1.setCellValueFactory(new PropertyValueFactory<Brand, ImageView>("brandImage"));
