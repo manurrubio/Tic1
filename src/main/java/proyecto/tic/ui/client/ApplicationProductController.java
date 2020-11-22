@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.ItemService;
+import proyecto.tic.services.StockService;
 import proyecto.tic.services.entities.Item;
 import proyecto.tic.services.entities.Usuario;
 
@@ -46,6 +47,8 @@ public class ApplicationProductController implements Initializable {
     private ApplicationProductWFilterController ap;
     @Autowired
     private ApplicationLoginController lc;
+    @Autowired
+    private StockService ss;
 
     @FXML
     private JFXTextField search;
@@ -69,7 +72,7 @@ public class ApplicationProductController implements Initializable {
     private GridPane grid;
 
     @FXML
-    private JFXButton comprar;
+    private JFXButton buyButton;
 
     @FXML
     private Label productName;
@@ -137,8 +140,8 @@ public class ApplicationProductController implements Initializable {
             loginButton.setText("Cerrar sesión");
         }
 
-        if(toShow.getType()!=null && toShow.getBrand()!=null){
-            String name= toShow.getType()+" "+toShow.getBrand().getName();
+        if(toShow.getName()!=null){
+            String name= toShow.getName();
             productName.setText(name.toUpperCase());
         }else if(toShow.getType()!=null){
             productName.setText(toShow.getType().toUpperCase());
@@ -147,7 +150,13 @@ public class ApplicationProductController implements Initializable {
             productBrand.setText("MARCA: " + toShow.getBrand().getName());
         }else{
             productBrand.setText(null);
+        }/*
+        if(ss.getStockByItem(toShow)!=null){
+            productSize.setText(ss.getStockByItem(toShow).getTalle());
+        }else{
+            productSize.setText(null);
         }
+*/
         if((Integer)toShow.getPrice()!=null){
             productPrice.setText("PRECIO: "+ ((Integer)toShow.getPrice()).toString());
         }
@@ -212,6 +221,22 @@ public class ApplicationProductController implements Initializable {
         }
         Image toAdd = SwingFXUtils.toFXImage(bImage, null);
         return toAdd;
+    }
+
+    @FXML
+    private void buy(ActionEvent event) throws IOException {
+        if(usuario==null){
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+            lc.setItem(toShow);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
+        }else{
+            //hacer lo del stock
+        }
     }
 
     @FXML

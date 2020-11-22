@@ -120,7 +120,7 @@ public class ApplicationProductWFilterController  implements Initializable{
                     public void handle(MouseEvent event) {
                         List<Item> allItems = is.getRepository().findByCategory(category);
                         Item item = allItems.get(finalI);
-
+                        pc.setItem(item);
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
                         pc.inicioSesion(usuario);

@@ -144,7 +144,7 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <JFXButton fx:id="comprar" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="121.0" style="-fx-background-radius: 1cm; -fx-background-color: #FFB896;" text="Agregar a carrito">
+                              <JFXButton fx:id="buyButton" alignment="CENTER" contentDisplay="CENTER" onAction="#buy" prefHeight="31.0" prefWidth="121.0" style="-fx-background-radius: 1cm; -fx-background-color: #FFB896;" text="Comprar">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>

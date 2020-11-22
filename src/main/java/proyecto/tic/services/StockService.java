@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyecto.tic.persistence.StockRepository;
 import proyecto.tic.persistence.StoreRepository;
+import proyecto.tic.services.entities.Item;
 import proyecto.tic.services.entities.Stock;
 import proyecto.tic.services.entities.Store;
 import proyecto.tic.services.rmi.StockManager;
@@ -27,4 +28,7 @@ public class StockService implements StockManager {
     public Stock getStock(String id) {
         return stockRepository.findOneById(id);
     }
+
+    @Override
+    public Stock getStockByItem(Item item){ return stockRepository.findOneByItem(item);}
 }
