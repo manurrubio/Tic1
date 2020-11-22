@@ -37,7 +37,6 @@ public class StoreService implements StoreManager {
     @Override
     public Store getStore(String name) {
         Store store = storeRepository.findOneByName(name);
-
         return store;
     }
 
@@ -52,7 +51,6 @@ public class StoreService implements StoreManager {
         Store storeExistente = storeRepository.findOneByName(store.getName());
         storeExistente.setName(store.getName());
         storeExistente.setDireccion(store.getDireccion());
-        storeExistente.setBrands(store.getBrands());
         storeRepository.save(storeExistente);
     }
 }

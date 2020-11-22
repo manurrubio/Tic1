@@ -95,3 +95,5 @@ proyecto/tic/AdmiApp.java
  proyecto.tic.AdmiApp
 proyecto/tic/services/entities/Client.java
  proyecto.tic.services.entities.Client
+proyecto/tic/ui/admi/AddStoreController.java
+ proyecto.tic.ui.admi.AddStoreController

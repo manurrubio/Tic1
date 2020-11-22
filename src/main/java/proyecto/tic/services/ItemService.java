@@ -31,7 +31,7 @@ public class ItemService implements ItemManager {
     @Override
     public void addItem(Item item) throws InvalidInformation, ItemAlreadyExists { // Ingresar
 
-        if (item.getName() == null || "".equals(item.getName()) || item.getType() == null || (Integer)item.getPrice() == null || item.getCategory() == null || item.getBrand() == null || item.getStock() == null || item.getStore() == null/* || item.getImagenPrincipal()== null*/) {
+        if (item.getName() == null || "".equals(item.getName()) || item.getType() == null || item.getCategory() == null || item.getBrand() == null || item.getStore() == null/* || item.getImagenPrincipal()== null*/) {
 
             throw new InvalidInformation();
         }

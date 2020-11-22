@@ -14,18 +14,16 @@ public class Store {
     @Column(length = 100)
     private String direccion;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "BRAND_STORE",
-            joinColumns = @JoinColumn(name="STORE_ID"),
-            inverseJoinColumns = @JoinColumn(name="BRAND_ID")
-    )
-    private Set<Brand> brands;
+
 
 
     public Store(String name, String direccion) {
         this.name = name;
         this.direccion = direccion;
-        this.brands = new HashSet<>();
+    }
+
+    public Store() {
+
     }
 
     public long getId() {
@@ -52,16 +50,6 @@ public class Store {
         this.direccion = direccion;
     }
 
-    public Set<Brand> getBrands() {
-        return brands;
-    }
 
-    public void setBrands(Set<Brand> brands) {
-        this.brands = brands;
-    }
-
-    public Store() {
-        this.brands = new HashSet<>();
-    }
 
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import proyecto.tic.AApplicationFX;
 import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.BrandService;
 import proyecto.tic.services.ItemService;
+import proyecto.tic.services.StockService;
+import proyecto.tic.services.StoreService;
 import proyecto.tic.services.entities.Brand;
 import proyecto.tic.services.entities.Item;
 import proyecto.tic.services.entities.Stock;
@@ -25,7 +29,10 @@ import proyecto.tic.services.exceptions.InvalidInformation;
 import proyecto.tic.services.exceptions.ItemAlreadyExists;
 import proyecto.tic.ui.client.ApplicationProductWFilterController;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
 
 @Component
 @FxmlView("/applicationAddProductII.fxml")
@@ -36,6 +43,10 @@ public class AddProductControllerII  {
     private ItemService is;
     @Autowired
     private BrandService bs;
+    @Autowired
+    private StoreService ss;
+    @Autowired
+    private StockService stockService;
 
     @FXML
     private JFXTextField search;
@@ -93,105 +104,115 @@ public class AddProductControllerII  {
     private String itemDescription;
     private int itemPrice;
     private String itemCategory;
-    private String itemBrand;
+    private Brand itemBrand;
+    private Store itemStore;
+    private byte[] iPic1;
+    private byte[] iPic2;
+    private byte[] iPic3;
+    private byte[] iPic4;
 
-    public void setAtributos(String iName, String iType, String iDesc, int iPrice, String iCat,String iBrand){
+
+    public void setAtributos(String iName, String iType, String iDesc, int iPrice, String iCat,Brand iBrand, Store iStore){
         this.itemName=iName;
         this.itemType= iType;
         this.itemDescription= iDesc;
         this.itemPrice=iPrice;
         this.itemCategory=iCat;
         this.itemBrand=iBrand;
-    }
-/*
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        FileChooser fileChooser= new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-        );
-
-        pic1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Stage stage= new Stage();
-                File selectedFile= fileChooser.showOpenDialog(stage);
-            }
-        });
-
-    }
-
- */ //COMO PONER IMÁGENES AYUDA
-
-    private void imageFilter(){
-
+        this.itemStore=iStore;
     }
 
     @FXML
     void addProduct(ActionEvent event) throws InvalidInformation, ItemAlreadyExists, BrandNotExist, IOException {
-        //Brand brand= bs.getBrand(itemBrand); todavia no hay marcas
-        Brand brand= new Brand();
         Long iStock= Long.valueOf(itemStock.getText());
-        Stock stock= new Stock("nproducto+ color +talle","color","L", "Store", iStock);
-        Store store= new Store();
-        Item item= new Item(itemName,itemType,itemDescription,itemPrice,itemCategory,brand,stock,store,null,null,null,null);
+
+        String[] colors= itemColor.getText().split(",");
+        String[] sizes= itemSize.getText().split(",");
+
+        Item item= new Item(itemName,itemType,itemDescription,itemPrice,itemCategory,itemBrand,itemStore,iPic1,iPic2,iPic3,iPic4);
         is.addItem(item);
+        for(int i=0; i<colors.length;i++){
+            for(int j=0; j<sizes.length;j++){
+                Stock stock= new Stock(itemName + itemStore.getName() + colors[i] +sizes[j],colors[i],sizes[j], itemStore.getId(), iStock,item);
+                stockService.addStock(stock);
+            }
+        }
+
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
+        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(paginaInicio);
         window.show();
 
-    }
-
-
-    @FXML
-    private void goToModaH(ActionEvent event) throws IOException {
-        ap.setAtributo("hombre");
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
     }
 
     @FXML
-    private void goToModaM(ActionEvent event) throws IOException {
-        ap.setAtributo("mujer");
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
-        ApplicationProductWFilterController controller = fxmlLoader.getController();
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
-    }
+    private void getPic1(ActionEvent event) throws IOException {
+        FileChooser fileChooser=new FileChooser();
+        fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        this.iPic1= Files.readAllBytes(file.toPath());
+    };
 
     @FXML
-    private void goToModaN(ActionEvent event) throws IOException {
-        ap.setAtributo("niño");
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
-        ApplicationProductWFilterController controller = fxmlLoader.getController();
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
-    }
+    private void getPic2(ActionEvent event) throws IOException {
+        FileChooser fileChooser=new FileChooser();
+        fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        this.iPic2= Files.readAllBytes(file.toPath());
+    };
+
+    @FXML
+    private void getPic3(ActionEvent event) throws IOException {
+        FileChooser fileChooser=new FileChooser();
+        fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        this.iPic3= Files.readAllBytes(file.toPath());
+    };
+
+    @FXML
+    private void getPic4(ActionEvent event) throws IOException {
+        FileChooser fileChooser=new FileChooser();
+        fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        this.iPic4= Files.readAllBytes(file.toPath());
+    };
 
     @FXML
     void volver(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProductI.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

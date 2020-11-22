@@ -57,7 +57,7 @@ public class AddBrandController {
     private byte[] pic;
 
     @FXML
-    void addBrand(ActionEvent event) throws BrandNotExist, BrandAlreadyExists, InvalidInformation {
+    void addBrand(ActionEvent event) throws BrandNotExist, BrandAlreadyExists, InvalidInformation, IOException {
         boolean next=true;
         String bName= brandName.getText();
         if(bs.getBrand(bName)!=null){
@@ -75,6 +75,13 @@ public class AddBrandController {
             Brand toAdd= new Brand(bName,pic);
             bs.addBrand(toAdd);
         }
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
 
     }
 
@@ -83,6 +90,7 @@ public class AddBrandController {
         FileChooser fileChooser=new FileChooser();
         fileChooser.setTitle("Elegir logo de la marca");
         fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG", "*.png")
         );
@@ -91,13 +99,7 @@ public class AddBrandController {
 
         this.pic= Files.readAllBytes(file.toPath());
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
+
     }
 
     @FXML

@@ -15,13 +15,11 @@ public class Brand {
     @Lob
     private byte[] brandImage;
 
-    @ManyToMany(mappedBy = "brands")
-    private Set<Store> stores;
+
 
     public Brand(String name, byte[] brandImage) {
         this.name = name;
         this.brandImage=brandImage;
-        this.stores = new HashSet<>();
     }
 
     public long getId() {
@@ -40,17 +38,7 @@ public class Brand {
         this.name = name;
     }
 
-    public Set<Store> getStores() {
-        return stores;
-    }
-
-    public void setStores(Set<Store> stores) {
-        this.stores = stores;
-    }
-
-    public Brand() {
-        this.stores = new HashSet<>();
-    }
+    public  Brand(){}
 
     public byte[] getBrandImage() {
         return brandImage;

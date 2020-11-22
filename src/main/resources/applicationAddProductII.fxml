@@ -24,25 +24,7 @@
             </Label>
          </children>
       </HBox>
-      <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;">
-         <children>
-            <JFXButton fx:id="modaH" layoutX="14.0" layoutY="1.0" onAction="#goToModaH" prefHeight="32.0" prefWidth="113.0" style="-fx-background-radius: 1cm; -fx-background-color: transparent;" text="Moda Hombre">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="modaM" layoutX="133.0" layoutY="1.0" onAction="#goToModaM" prefHeight="32.0" prefWidth="113.0" style="-fx-background-radius: 1cm; -fx-background-color: transparent;" text="Moda Mujer">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="modaN" layoutX="253.0" layoutY="1.0" onAction="#goToModaN" prefHeight="32.0" prefWidth="113.0" style="-fx-background-radius: 1cm; -fx-background-color: transparent;" text="Moda Niño">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-         </children>
-      </AnchorPane>
+      <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;" />
       <BorderPane layoutX="-2.0" layoutY="93.0" prefHeight="320.0" prefWidth="693.0" style="-fx-background-color: #FFE7FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
          <center>
             <AnchorPane maxWidth="753.0" prefHeight="357.0" prefWidth="753.0" style="-fx-background-color: light grey; -fx-background-radius: 0.5cm;" BorderPane.alignment="CENTER">

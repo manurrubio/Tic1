@@ -18,24 +18,25 @@ public class Item {
     private String type;
     @Column(length = 100)
     private String description;
+
     private int price;
     @Column(length = 25)
     private String category;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinTable(name = "ITEM_BRAND",
             joinColumns = @JoinColumn(name="ITEM_ID"),
             inverseJoinColumns = @JoinColumn(name="BRAND_ID")
     )
     private Brand brand;
-
+/*
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "ITEM_STOCK",
             joinColumns = @JoinColumn(name="ITEM_ID"),
             inverseJoinColumns = @JoinColumn(name="STOCK_ID")
     )
     private Stock stock;
-
-    @ManyToOne(cascade = CascadeType.ALL)
+*/
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinTable(name = "ITEM_STORE",
             joinColumns = @JoinColumn(name="ITEM_ID"),
             inverseJoinColumns = @JoinColumn(name="STORE_ID")
@@ -52,7 +53,7 @@ public class Item {
 
     public Item() {
     }
-
+/*
     public Stock getStock() {
         return stock;
     }
@@ -60,8 +61,8 @@ public class Item {
     public void setStock(Stock stock) {
         this.stock = stock;
     }
-
-    public Item(String name, String type, String description, int price, String category, Brand brand, Stock stock, Store store, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3) {
+*/
+    public Item(String name, String type, String description, int price, String category, Brand brand, Store store, byte[] imagenPrincipal, byte[] imagen1, byte[] imagen2, byte[] imagen3) {
         this.id = id;
         this.name= name;
         this.type = type;
@@ -69,7 +70,7 @@ public class Item {
         this.price = price;
         this.category = category;
         this.brand = brand;
-        this.stock = stock;
+        //this.stock = stock;
         this.store = store;
         this.imagenPrincipal = imagenPrincipal;
         this.imagen1 = imagen1;

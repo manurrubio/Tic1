@@ -11,19 +11,27 @@ public class Stock {
     @Column
     private String talle;
     @Column
-    private String store;
+    private Long store;
     @Column
     private Long cantidad;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinTable(name = "STOCK_ITEM",
+            joinColumns = @JoinColumn(name="STOCK_ID"),
+            inverseJoinColumns = @JoinColumn(name="ITEM_ID")
+    )
+    private Item item;
 
     public Stock() {
     }
 
-    public Stock(String id,String color, String talle, String store, Long cantidad) {
+    public Stock(String id,String color, String talle, Long store, Long cantidad, Item item) {
         this.id = id;
         this.cantidad = cantidad;
         this.color = color;
         this.talle = talle;
         this.store = store;
+        this.item=item;
     }
 
     public String getId() {

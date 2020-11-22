@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import proyecto.tic.AApplicationFX;
 import proyecto.tic.services.StockService;
 import proyecto.tic.services.StoreService;
@@ -22,6 +24,8 @@ import proyecto.tic.services.exceptions.StoreNotExist;
 
 import java.io.IOException;
 
+@Component
+@FxmlView("/applicationAddStore.fxml")
 public class AddStoreController {
     @Autowired
     private StoreService ss;
