@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.ItemService;
 import proyecto.tic.services.entities.Item;
+import proyecto.tic.services.entities.Usuario;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -43,6 +44,8 @@ public class ApplicationProductController implements Initializable {
     private ItemService is;
     @Autowired
     private ApplicationProductWFilterController ap;
+    @Autowired
+    private ApplicationLoginController lc;
 
     @FXML
     private JFXTextField search;
@@ -100,9 +103,13 @@ public class ApplicationProductController implements Initializable {
 
     private Item toShow;
 
+    private Usuario usuario=null;
+
     void setItem(Item item){
         this.toShow=item;
     }
+
+    void inicioSesion(Usuario usuario){this.usuario=usuario;}
 
     private List<Image> getImages(Item item){
         List<Image> allImages= new ArrayList<>();
@@ -126,6 +133,10 @@ public class ApplicationProductController implements Initializable {
 // no anda lo de ver la marca por alguna razon
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (usuario!=null){
+            loginButton.setText("Cerrar sesión");
+        }
+
         if(toShow.getType()!=null && toShow.getBrand()!=null){
             String name= toShow.getType()+" "+toShow.getBrand().getName();
             productName.setText(name.toUpperCase());
@@ -205,14 +216,19 @@ public class ApplicationProductController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
-
+        if(usuario!=null){
+            usuario=null;
+            loginButton.setText("Iniciar sesión");
+        }else {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+            lc.setItem(toShow);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
+        }
 
     }
 

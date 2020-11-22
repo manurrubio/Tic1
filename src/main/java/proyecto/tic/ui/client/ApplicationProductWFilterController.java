@@ -25,6 +25,7 @@ import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.ItemService;
 import proyecto.tic.services.UsuarioService;
 import proyecto.tic.services.entities.Item;
+import proyecto.tic.services.entities.Usuario;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -57,6 +58,7 @@ public class ApplicationProductWFilterController  implements Initializable{
     private GridPane grid;
     @FXML
     private ImageView toAdd;
+    private Usuario usuario=null;
     private String category;
     boolean isBrand= false;
     private String brand;
@@ -65,6 +67,7 @@ public class ApplicationProductWFilterController  implements Initializable{
     public void setAtributo(String category){
         this.category=category;
     }
+    void inicioSesion(Usuario usuario){this.usuario=usuario;}
 
 
     private Image[] addImagesToArray(String filter) {
@@ -92,6 +95,10 @@ public class ApplicationProductWFilterController  implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (usuario!=null){
+            loginButton.setText("Cerrar sesión");
+        }
+
         grid.getChildren().clear();
         grid.setPadding(new Insets(90, 7, 80, 7));
         grid.setHgap(150);
@@ -116,6 +123,7 @@ public class ApplicationProductWFilterController  implements Initializable{
 
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+                        pc.inicioSesion(usuario);
                         Parent inicioSesion = null;
                         try {
                             pc.setItem(item);
@@ -149,13 +157,18 @@ public class ApplicationProductWFilterController  implements Initializable{
 
     @FXML
     private void login(ActionEvent event) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader();
-    fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-    Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
-    Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    window.setScene(paginaInicio);
-    window.show();
+        if(usuario!=null){
+            usuario=null;
+            loginButton.setText("Iniciar sesión");
+        }else {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
+        }
 
 
 }

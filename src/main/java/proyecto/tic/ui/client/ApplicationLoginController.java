@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.UsuarioService;
+import proyecto.tic.services.entities.Item;
 import proyecto.tic.services.entities.Usuario;
 
 import java.io.IOException;
@@ -24,6 +25,10 @@ import java.io.IOException;
 public class ApplicationLoginController {
     @Autowired
     private UsuarioService us;
+    @Autowired
+    private ApplicationProductController pc;
+    @Autowired
+    private ApplicationMenuController mc;
 
     @FXML
     private JFXButton loginButton;
@@ -35,21 +40,36 @@ public class ApplicationLoginController {
     private JFXPasswordField usuarioPassword;
 
     private Usuario usuario=null;
+    private Item item=null;
 
+    void setItem(Item item){
+        this.item=item;
+    }
 
     @FXML
     private void volver(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
+        if(item==null) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
+        }else{
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+            pc.setItem(item);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProduct.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
+        }
 
     }
 
-    public void login(ActionEvent actionEvent) {
+    public void login(ActionEvent event) throws IOException {
         boolean next=true;
         int uCi= Integer.parseInt(usuarioID.getText());
         String password= usuarioPassword.getText();
@@ -61,6 +81,28 @@ public class ApplicationLoginController {
         }
         if(next==true){
             this.usuario= us.getUsuario(uCi);
+            //Agregué el usuario, hago cambio de pantalla
+            if(item==null) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+                mc.inicioSesion(usuario);
+                Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
+                Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(paginaInicio);
+                window.show();
+            }else{
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+                pc.setItem(item);
+                pc.inicioSesion(usuario);
+                Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProduct.fxml"));
+                Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(paginaInicio);
+                window.show();
+            }
         }
+
     }
 }

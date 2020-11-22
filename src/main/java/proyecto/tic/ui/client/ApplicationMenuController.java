@@ -75,6 +75,8 @@ public class ApplicationMenuController implements Initializable {
 
     private Image[] images = new Image[150];
 
+    void inicioSesion(Usuario usuario){this.usuario=usuario;}
+
     private Image[] addImagesToArray() {
         //tengo una lista de fotos en forma
         Image[] toReturn = new Image[150];
@@ -123,7 +125,7 @@ public class ApplicationMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (usuario!=null){
-            loginButton.disableVisualFocusProperty();
+            loginButton.setText("Cerrar sesión");
         }
         /*
            --CODIGO PARA TABLA--
@@ -190,14 +192,18 @@ public class ApplicationMenuController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
-
+        if(usuario!=null){
+            usuario=null;
+            loginButton.setText("Iniciar sesión");
+        }else {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLogin.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
+        }
 
     }
 
@@ -215,6 +221,7 @@ public class ApplicationMenuController implements Initializable {
     @FXML
     private void goToModaH(ActionEvent event) throws IOException {
         ap.setAtributo("hombre");
+        ap.inicioSesion(usuario);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
@@ -227,6 +234,7 @@ public class ApplicationMenuController implements Initializable {
     @FXML
     private void goToModaM(ActionEvent event) throws IOException {
         ap.setAtributo("mujer");
+        ap.inicioSesion(usuario);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
@@ -240,6 +248,7 @@ public class ApplicationMenuController implements Initializable {
     @FXML
     private void goToModaN(ActionEvent event) throws IOException {
         ap.setAtributo("niño");
+        ap.inicioSesion(usuario);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
