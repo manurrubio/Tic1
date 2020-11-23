@@ -81,6 +81,8 @@ proyecto/tic/services/exceptions/BrandAlreadyExists.java
  proyecto.tic.services.exceptions.BrandAlreadyExists
 proyecto/tic/services/exceptions/StoreAlreadyExists.java
  proyecto.tic.services.exceptions.StoreAlreadyExists
+proyecto/tic/services/entities/Tarjeta.java
+ proyecto.tic.services.entities.Tarjeta
 proyecto/tic/persistence/ItemRepository.java
  proyecto.tic.persistence.ItemRepository
 proyecto/tic/services/ItemService.java

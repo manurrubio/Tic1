@@ -38,30 +38,4 @@ public class ItemService implements ItemManager {
 
     }
 
-
-    @Transactional
-    public List<Item> findProducts(@RequestParam(name = "type", required = false) String type,
-                                   @RequestParam(name = "color", required = false) String color,
-                                   @RequestParam(name = "size", required = false) String size,
-                                   @RequestParam(name = "style", required = false) String style,
-                                   @RequestParam(name = "category", required = false) String category,
-                                   @RequestParam(name= "brand", required = false) String brand) {
-        /*
-        if(type!=null ||color !=null ||size!=null || style!=null || category!=null || brand!=null){
-            return itemRepository.findAll(type,color,size,style,category,brand)
-
-
-            )
-        }
-
-         */
-            List<Item> result = new ArrayList<>();
-            Iterator<Item> itemIterator = itemRepository.findAll().iterator();
-            while (itemIterator.hasNext())
-                result.add(itemIterator.next());
-            return result;
-        }
-
-
-        // Ver que funciones hacemos para esto ademas de las de add delete y update del admin , como las de filtrado en el itemRepository
 }

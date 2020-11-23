@@ -33,6 +33,16 @@ public class StockService implements StockManager {
     public List<Stock> getStockByItem(Item item){ return stockRepository.findOneByItem(item);}
 
     @Override
+    public List<Stock> getStockByColor(String color) {
+        return (List<Stock>) stockRepository.findAllByColor(color);
+    }
+
+    @Override
+    public List<Stock> getStockByTalle(String talle) {
+        return (List<Stock>) stockRepository.findAllByTalle(talle);
+    }
+
+    @Override
     public void buyStock(String id, Long cantidad){
         Stock stock= getStock(id);
         stock.setCantidad(stock.getCantidad() - cantidad);

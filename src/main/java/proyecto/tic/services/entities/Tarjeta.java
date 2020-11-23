@@ -14,6 +14,7 @@ public class Tarjeta {
     private String apellido;
     @Column(length = 25)
     private Integer cvc;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinTable(name = "TARJETA_USUARIO",
             joinColumns = @JoinColumn(name="TARJETA_ID"),

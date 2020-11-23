@@ -10,6 +10,8 @@ public interface StockManager {
     Stock getStock(String id);
 
     List<Stock> getStockByItem(Item item);
+    List<Stock> getStockByColor(String color);
+    List<Stock> getStockByTalle(String talle);
 
     void buyStock(String id, Long cantidad);
 }

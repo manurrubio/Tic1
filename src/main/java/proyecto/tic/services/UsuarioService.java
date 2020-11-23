@@ -1,17 +1,34 @@
 package proyecto.tic.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import proyecto.tic.persistence.ItemRepository;
+import proyecto.tic.persistence.StockRepository;
 import proyecto.tic.persistence.UsuarioRepository;
 import proyecto.tic.services.entities.Admin;
+import proyecto.tic.services.entities.Item;
+import proyecto.tic.services.entities.Stock;
 import proyecto.tic.services.entities.Usuario;
 import proyecto.tic.services.exceptions.*;
 import proyecto.tic.services.rmi.UsuarioManager;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UsuarioService implements UsuarioManager {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private StockRepository stockRepository;
 
     public UsuarioRepository getRepository(){
         return usuarioRepository;
@@ -55,6 +72,73 @@ public class UsuarioService implements UsuarioManager {
         }
         return administrador;
     } */ // VER PORQUE NO ME CONECTA A MI BDD
+
+    public Iterable<Item> findAllSpecification(List<String> coloresParaFiltrar, List<String> tallesParaFiltrar, List<String> typeItem, List<String> categorys){
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PersistenceUnit");
+        EntityManager entityManager = factory.createEntityManager();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Item> cq = cb.createQuery(Item.class);
+        Root<Item> item = cq.from(Item.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        List<Predicate> predicadoColor = new ArrayList<>();
+        if(coloresParaFiltrar.size() > 0){
+            List<Item> itemsColor = new ArrayList<>();
+            for(String color : coloresParaFiltrar){
+                List<Stock> stockDelColor = (List) stockRepository.findAllByColor(color);
+                for(Stock stock : stockDelColor){
+                    if(stock.getCantidad() > 0){
+                        itemsColor.add(stock.getItem());
+                    }
+                }
+                predicadoColor.add(item.in(itemsColor));
+            }
+            cq.where(item.in(itemsColor));
+            predicates.add(cb.or(predicadoColor.toArray(new Predicate[0])));
+        }
+
+        List<Predicate> predicadoTalle = new ArrayList<>();
+        if(tallesParaFiltrar.size() > 0){
+            List<Item> itemsTalle = new ArrayList<>();
+            for(String talle : tallesParaFiltrar){
+                List<Stock> stockDelTalle = (List) stockRepository.findAllByTalle(talle);
+                for(Stock stock : stockDelTalle){
+                    if(stock.getCantidad() > 0){
+                        itemsTalle.add(stock.getItem());
+                    }
+                }
+                predicadoTalle.add(item.in(itemsTalle));
+            }
+            cq.where(item.in(itemsTalle));
+            predicates.add(cb.or(predicadoColor.toArray(new Predicate[0])));
+        }
+
+        List<Predicate> predicadoType = new ArrayList<>();
+        if(typeItem.size() > 0){
+            typeItem.forEach(typeproducto -> predicadoType.add(cb.equal(item.get("type"), typeproducto)));
+            predicates.add(cb.or(predicadoType.toArray(new Predicate[0])));
+        }
+
+        List<Predicate> predicadoCategoria = new ArrayList<>();
+        if(categorys.size() > 0){
+            categorys.forEach(categoryItem -> predicadoCategoria.add(cb.equal(item.get("category"), categoryItem)));
+            predicates.add(cb.or(predicadoCategoria.toArray(new Predicate[0])));
+        }
+
+        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[0]));
+        cq.where(finalPredicate);
+        List<Item> items = entityManager.createQuery(cq).getResultList();
+
+        if (entityManager != null) {
+            entityManager.close();
+        }
+        if (factory != null) {
+            factory.close();
+        }
+        return items;
+    }
 
     @Override
     public void deleteUsuario(int ci){ // Si el cliente quiere borrar su cuenta
