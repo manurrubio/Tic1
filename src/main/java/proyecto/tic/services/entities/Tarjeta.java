@@ -31,6 +31,10 @@ public class Tarjeta {
         this.usuario = usuario;
     }
 
+    public Tarjeta() {
+
+    }
+
     public Long getnTarjeta() {
         return nTarjeta;
     }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="613.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.client.ApplicationAddTarjetaController">
+   <children>
+      <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="386.0" prefWidth="589.0" style="-fx-background-color: #FFE7FF;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="336.0" prefWidth="121.0" style="-fx-background-color: linear-gradient(to right bottom, #d16ba5, #c96bad, #c06cb4, #b56dbb, #a96fc1, #a175c8, #997bce, #9181d3, #8d8bda, #8995e0, #879fe6, #86a8ea); -fx-background-radius: 0.5cm;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" layoutX="94.0" layoutY="-17.0" prefHeight="353.0" prefWidth="196.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="-17.0">
+                     <children>
+                        <Label text="El team" textFill="#f4f9ff">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="N°1" textFill="#f4f9ff">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label text="del Sherman" textFill="#f4f9ff">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="196.0" layoutY="-3.0" maxWidth="411.0" prefHeight="394.0" prefWidth="411.0" style="-fx-background-color: light grey; -fx-background-radius: 0.5cm;">
+               <children>
+                  <JFXButton fx:id="regTarjeta" layoutX="63.0" layoutY="339.0" onAction="#regTarjetaButton" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #d16ba5; -fx-background-radius: 1cm;" text="Registrar tarjeta">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label layoutX="14.0" layoutY="7.0" prefHeight="49.0" prefWidth="231.0" text="Agregar tarjeta">
+                     <font>
+                        <Font name="Calibri" size="36.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="volverButton" layoutX="212.0" layoutY="339.0" onAction="#volver" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #698eeb; -fx-background-radius: 1cm;" text="Volver">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXTextField fx:id="nTarjeta" focusColor="#00c9ad" labelFloat="true" layoutX="14.0" layoutY="166.0" prefHeight="32.0" prefWidth="250.0" promptText="Número de tarjeta" AnchorPane.leftAnchor="15.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </JFXTextField>
+                  <JFXTextField fx:id="cvv" focusColor="#00c9ad" labelFloat="true" layoutX="13.0" layoutY="216.0" prefHeight="32.0" prefWidth="250.0" promptText="CVV" AnchorPane.leftAnchor="15.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </JFXTextField>
+                  <JFXTextField fx:id="tVencimiento" focusColor="#00c9ad" labelFloat="true" layoutX="14.0" layoutY="266.0" prefHeight="32.0" prefWidth="250.0" promptText="Vencimiento" AnchorPane.leftAnchor="15.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </JFXTextField>
+                  <JFXTextField fx:id="tLastName" focusColor="#00c9ad" labelFloat="true" layoutX="13.0" layoutY="113.0" prefHeight="32.0" prefWidth="250.0" promptText="Apellido del titular" AnchorPane.leftAnchor="15.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </JFXTextField>
+                  <JFXTextField fx:id="tName" focusColor="#00c9ad" labelFloat="true" layoutX="13.0" layoutY="58.0" prefHeight="32.0" prefWidth="250.0" promptText="Nombre del titular" AnchorPane.leftAnchor="15.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </JFXTextField>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

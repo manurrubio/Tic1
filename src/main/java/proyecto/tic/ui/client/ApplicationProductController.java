@@ -59,6 +59,8 @@ public class ApplicationProductController implements Initializable {
     private ApplicationLoginController lc;
     @Autowired
     private StockService ss;
+    @Autowired
+    private ApplicationComprarController ac;
 
     @FXML
     private JFXTextField search;
@@ -279,10 +281,20 @@ public class ApplicationProductController implements Initializable {
             window.setScene(paginaInicio);
             window.show();
         }else{
-            //hacer lo del stock
-            this.selectedSize = comboSizesBox.getValue();
-            this.selectedColor = comboColorsBox.getValue();
-            ss.buyStock(toShow.getName()+ " " + toShow.getStore().getName() +" " + selectedColor +" " +selectedSize, (long) 1);
+            if(comboSizesBox.getValue()!=null && comboColorsBox.getValue()!=null){
+                this.selectedSize = comboSizesBox.getValue();
+                this.selectedColor = comboColorsBox.getValue();
+                ac.setColorAndSize(selectedColor,selectedSize);
+                ac.setItem(toShow);
+                ac.setUsuario(usuario);
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+                Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationComprar.fxml"));
+                Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(paginaInicio);
+                window.show();
+            }
         }
     }
 

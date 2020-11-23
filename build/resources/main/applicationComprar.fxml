@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="613.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.client.ApplicationComprarController">
+   <children>
+      <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="386.0" prefWidth="589.0" style="-fx-background-color: #FFE7FF;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <AnchorPane layoutX="10.0" layoutY="7.0" maxWidth="572.0" prefHeight="370.0" prefWidth="572.0" style="-fx-background-color: light grey; -fx-background-radius: 0.5cm;">
+               <children>
+                  <JFXButton fx:id="buyButton" layoutX="183.0" layoutY="316.0" onAction="#buy" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #d16ba5; -fx-background-radius: 1cm;" text="Comprar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="volverButton" layoutX="302.0" layoutY="316.0" onAction="#volver" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #698eeb; -fx-background-radius: 1cm;" text="Volver">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label layoutX="-2.0" layoutY="2.0" prefHeight="32.0" prefWidth="358.0" text="Ingrese tarjeta">
+                     <font>
+                        <Font name="Calibri" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="3.0" layoutY="46.0" prefHeight="49.0" prefWidth="231.0" text="Utilizar tarjeta ya ingresada">
+                     <font>
+                        <Font name="Calibri" size="19.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="nTarjeta" focusColor="#00c9ad" labelFloat="true" layoutY="86.0" prefHeight="32.0" prefWidth="273.0" promptText="Número de tarjeta" />
+                  <JFXTextField fx:id="cvv" focusColor="#00c9ad" labelFloat="true" layoutX="288.0" layoutY="86.0" prefHeight="32.0" prefWidth="259.0" promptText="CVV" />
+                  <Label layoutX="3.0" layoutY="130.0" prefHeight="49.0" prefWidth="406.0" text="En caso de no tener una tarjeta registrada presione">
+                     <font>
+                        <Font name="Calibri" size="19.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="createTarjeta" layoutX="390.0" layoutY="137.0" onAction="#addTarjeta" prefHeight="36.0" prefWidth="60.0" style="-fx-background-color: transparent; -fx-background-radius: 1cm;" text="aquí" textFill="#5273bf">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Calibri" size="19.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="-2.0" layoutY="200.0" prefHeight="44.0" prefWidth="530.0" text="Como desea obtener su producto">
+                     <font>
+                        <Font name="Calibri" size="38.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="envio" focusColor="#ffb896" layoutX="192.0" layoutY="261.0" prefHeight="25.0" prefWidth="188.0" promptText="Elegir método de envío/retiro" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

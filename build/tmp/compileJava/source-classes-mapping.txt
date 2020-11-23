@@ -22,6 +22,8 @@ proyecto/tic/persistence/BrandRepository.java
  proyecto.tic.persistence.BrandRepository
 proyecto/tic/services/StoreService.java
  proyecto.tic.services.StoreService
+proyecto/tic/services/TarjetaService.java
+ proyecto.tic.services.TarjetaService
 proyecto/tic/services/exceptions/ClientNotExist.java
  proyecto.tic.services.exceptions.ClientNotExist
 proyecto/tic/services/exceptions/AdminAlreadyExists.java
@@ -30,6 +32,8 @@ proyecto/tic/ui/client/ApplicationProductWFilterController.java
  proyecto.tic.ui.client.ApplicationProductWFilterController
  proyecto.tic.ui.client.ApplicationProductWFilterController$1
  proyecto.tic.ui.client.ApplicationProductWFilterController$2
+proyecto/tic/services/rmi/TarjetaManager.java
+ proyecto.tic.services.rmi.TarjetaManager
 proyecto/tic/services/entities/Stock.java
  proyecto.tic.services.entities.Stock
 proyecto/tic/services/exceptions/ItemAlreadyExists.java
@@ -56,11 +60,17 @@ proyecto/tic/ui/client/ApplicationSignInController.java
  proyecto.tic.ui.client.ApplicationSignInController
 proyecto/tic/ui/admi/AddProductControllerI.java
  proyecto.tic.ui.admi.AddProductControllerI
+proyecto/tic/ui/client/ApplicationComprarController.java
+ proyecto.tic.ui.client.ApplicationComprarController
 proyecto/tic/ui/client/ApplicationProductController.java
  proyecto.tic.ui.client.ApplicationProductController
  proyecto.tic.ui.client.ApplicationProductController$1
 proyecto/tic/AdmiApp.java
  proyecto.tic.AdmiApp
+proyecto/tic/services/exceptions/TarjetaAlreadyExists.java
+ proyecto.tic.services.exceptions.TarjetaAlreadyExists
+proyecto/tic/persistence/TarjetaRepository.java
+ proyecto.tic.persistence.TarjetaRepository
 proyecto/tic/services/rmi/BrandManager.java
  proyecto.tic.services.rmi.BrandManager
 proyecto/tic/persistence/UsuarioRepository.java
@@ -103,6 +113,8 @@ proyecto/tic/services/entities/Usuario.java
  proyecto.tic.services.entities.Usuario
 proyecto/tic/services/rmi/StoreManager.java
  proyecto.tic.services.rmi.StoreManager
+proyecto/tic/ui/client/ApplicationAddTarjetaController.java
+ proyecto.tic.ui.client.ApplicationAddTarjetaController
 proyecto/tic/ui/admi/AddStoreController.java
  proyecto.tic.ui.admi.AddStoreController
 proyecto/tic/services/rmi/AdminManager.java
