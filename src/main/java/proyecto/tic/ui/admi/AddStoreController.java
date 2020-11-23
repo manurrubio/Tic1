@@ -54,7 +54,7 @@ public class AddStoreController {
     }
 
     @FXML
-    void addStore(ActionEvent event) throws StoreAlreadyExists, InvalidInformation {
+    void addStore(ActionEvent event) throws StoreAlreadyExists, InvalidInformation, IOException {
         boolean next=true;
         String sName= storeName.getText();
         if(ss.getStore(sName)!=null){
@@ -69,7 +69,13 @@ public class AddStoreController {
             Store toAdd= new Store(sName,sDir);
             ss.addStore(toAdd);
         }
-
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiI.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
     }
 
     @FXML

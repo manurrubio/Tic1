@@ -49,7 +49,7 @@ public class ApplicationSignInController{
     private UsuarioService service;
 
     @FXML
-    private void signIn(ActionEvent event)  {
+    private void signIn(ActionEvent event) throws IOException {
         int id= Integer.parseInt(ciBox.getText());
         String firstName= nameBox.getText();
         String lastName= lastNameBox.getText();
@@ -67,6 +67,13 @@ public class ApplicationSignInController{
 
         clean();
 
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
     }
 
     @FXML
