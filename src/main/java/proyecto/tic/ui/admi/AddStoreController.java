@@ -66,16 +66,17 @@ public class AddStoreController {
             next=false;
         }
         if(next=true){
-            Store toAdd= new Store(sName,sDir);
+            Store toAdd= new Store(sName,sDir, admi);
             ss.addStore(toAdd);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
         }
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiI.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
+
     }
 
     @FXML

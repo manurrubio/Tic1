@@ -127,8 +127,8 @@ public class AddProductControllerII  {
     void addProduct(ActionEvent event) throws InvalidInformation, ItemAlreadyExists, BrandNotExist, IOException {
         Long iStock= Long.valueOf(itemStock.getText());
 
-        String[] colors= itemColor.getText().split(",");
-        String[] sizes= itemSize.getText().split(",");
+        String[] colors= itemColor.getText().split(", ");
+        String[] sizes= itemSize.getText().split(", ");
 
         Item item= new Item(itemName,itemType,itemDescription,itemPrice,itemCategory,itemBrand,itemStore,iPic1,iPic2,iPic3,iPic4);
         is.addItem(item);
@@ -153,7 +153,7 @@ public class AddProductControllerII  {
     @FXML
     private void getPic1(ActionEvent event) throws IOException {
         FileChooser fileChooser=new FileChooser();
-        fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.setTitle("Elegir imagen principal");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -161,14 +161,15 @@ public class AddProductControllerII  {
         );
 
         File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
-
-        this.iPic1= Files.readAllBytes(file.toPath());
+        if(file != null) {
+            this.iPic1 = Files.readAllBytes(file.toPath());
+        }
     };
 
     @FXML
     private void getPic2(ActionEvent event) throws IOException {
         FileChooser fileChooser=new FileChooser();
-        fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.setTitle("Elegir imagen");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -176,14 +177,15 @@ public class AddProductControllerII  {
         );
 
         File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
-
-        this.iPic2= Files.readAllBytes(file.toPath());
+        if(file != null) {
+            this.iPic2 = Files.readAllBytes(file.toPath());
+        }
     };
 
     @FXML
     private void getPic3(ActionEvent event) throws IOException {
         FileChooser fileChooser=new FileChooser();
-        fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.setTitle("Elegir imagen");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -191,14 +193,15 @@ public class AddProductControllerII  {
         );
 
         File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
-
-        this.iPic3= Files.readAllBytes(file.toPath());
+        if(file != null) {
+            this.iPic3 = Files.readAllBytes(file.toPath());
+        }
     };
 
     @FXML
     private void getPic4(ActionEvent event) throws IOException {
         FileChooser fileChooser=new FileChooser();
-        fileChooser.setTitle("Elegir logo de la marca");
+        fileChooser.setTitle("Elegir imagen");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -206,8 +209,9 @@ public class AddProductControllerII  {
         );
 
         File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
-
-        this.iPic4= Files.readAllBytes(file.toPath());
+        if(file != null) {
+            this.iPic4 = Files.readAllBytes(file.toPath());
+        }
     };
 
     @FXML

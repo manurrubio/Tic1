@@ -1,23 +1,30 @@
 package proyecto.tic.ui.client;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +37,7 @@ import proyecto.tic.services.entities.Stock;
 import proyecto.tic.services.entities.Usuario;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -84,8 +92,6 @@ public class ApplicationProductController implements Initializable {
     @FXML
     private Label productBrand;
 
-    @FXML
-    private Label productSize;
 
     @FXML
     private Label productStore;
@@ -105,9 +111,14 @@ public class ApplicationProductController implements Initializable {
     @FXML
     private JFXButton modaN;
 
+    @FXML
+    private ListView<String> sizeList;
+
     private Item toShow;
 
     private Usuario usuario=null;
+
+    private String selectedSize;
 
     void setItem(Item item){
         this.toShow=item;
@@ -153,19 +164,21 @@ public class ApplicationProductController implements Initializable {
             productBrand.setText(null);
         }
 
-        if(ss.getStockByItem(toShow)!=null){
-            List<Stock> allStock=ss.getStockByItem(toShow);
-            String size="TALLES: ";
-            List<String> allSizes= new ArrayList<>();
+        if(ss.getStockByItem(toShow)!=null) {
+            List<Stock> allStock = ss.getStockByItem(toShow);
+            String size = "TALLES: ";
+            sizeList = new ListView<String>();
+            List<String> allSizes = new ArrayList<>();
             for (Stock stock : allStock) {
                 if (!allSizes.contains(stock.getTalle())) {
                     allSizes.add(stock.getTalle());
                 }
             }
-            for(int i=0; i<allSizes.size();i++){
-                size= size+ allSizes.get(i) + " ";
-            }
-            productSize.setText(size);
+            ObservableList sizes = FXCollections.observableArrayList();
+            sizes.removeAll(sizes);
+            String a = "Algo";
+            sizes.addAll(a);
+            sizeList.getItems().addAll(sizes);
         }
 
         if(ss.getStockByItem(toShow)!=null){

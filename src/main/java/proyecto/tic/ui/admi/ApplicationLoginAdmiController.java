@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import proyecto.tic.AApplicationFX;
 import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.AdminService;
 import proyecto.tic.services.UsuarioService;
@@ -67,7 +68,7 @@ public class ApplicationLoginAdmiController {
         if(next==true){
             this.admi= as.getAdmi(uCi);
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+            fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
             am.login(admi);
             Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
             Scene paginaInicio = new Scene(inicioSesion, 780, 450);

@@ -23,13 +23,22 @@ public class Store {
 
 
 
-    public Store(String name, String direccion) {
+    public Store(String name, String direccion, Admin admin) {
         this.name = name;
         this.direccion = direccion;
+        this.admin = admin;
     }
 
     public Store() {
 
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
     public long getId() {

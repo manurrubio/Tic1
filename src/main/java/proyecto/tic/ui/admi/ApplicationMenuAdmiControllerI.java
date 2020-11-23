@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
+import proyecto.tic.AApplicationFX;
 import proyecto.tic.CApplicationFX;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class ApplicationMenuAdmiControllerI {
     @FXML
     void loginAdmi(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationLoginAdmi.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
