@@ -42,9 +42,11 @@ public class StockService implements StockManager {
         return (List<Stock>) stockRepository.findAllByTalle(talle);
     }
 
+
     @Override
     public void buyStock(String id, Long cantidad){
-        Stock stock= getStock(id);
+        Stock stock= stockRepository.findOneById(id);
         stock.setCantidad(stock.getCantidad() - cantidad);
+        stockRepository.save(stock);
     }
 }

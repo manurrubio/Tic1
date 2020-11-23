@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.client.ApplicationProductController">
+<ScrollPane minWidth="782.0" prefWidth="782.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.client.ApplicationProductController">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;">
          <children>
@@ -120,37 +120,42 @@
                               <Font name="Calibri" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="productBrand" prefHeight="17.0" prefWidth="189.0" text="Marca">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="productSize" prefHeight="17.0" prefWidth="188.0" text="TALLE:">
+                        <Label fx:id="productSize" prefHeight="23.0" prefWidth="188.0" text="TALLE:">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <VBox fx:id="sizeBox" prefHeight="101.0" prefWidth="215.0">
-                           <children>
-                              <JFXListView fx:id="sizeList" />
-                           </children>
-                        </VBox>
-                        <Label fx:id="productColor" prefHeight="17.0" prefWidth="220.0" text="Colores">
+                        <JFXComboBox fx:id="comboSizesBox" focusColor="#ffb896" prefHeight="18.0" prefWidth="150.0" promptText="Elegir talle">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </JFXComboBox>
+                        <Label fx:id="productColor" prefHeight="31.0" prefWidth="210.0" text="COLORES:">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
+                        <JFXComboBox fx:id="comboColorsBox" focusColor="#ffb896" prefHeight="18.0" prefWidth="150.0" promptText="Elegir color">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </JFXComboBox>
                         <Label fx:id="productStore" prefHeight="17.0" prefWidth="220.0" text="Tiendas">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="productPrice" prefHeight="17.0" prefWidth="187.0" text="Precio">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
@@ -160,7 +165,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                                  <HBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                               </JFXButton>
                            </children>

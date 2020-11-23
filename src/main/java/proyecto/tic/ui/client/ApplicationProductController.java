@@ -2,6 +2,7 @@ package proyecto.tic.ui.client;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -112,13 +113,18 @@ public class ApplicationProductController implements Initializable {
     private JFXButton modaN;
 
     @FXML
-    private ListView<String> sizeList;
+    private JFXComboBox<String> comboSizesBox;
+
+    @FXML
+    private JFXComboBox<String> comboColorsBox;
 
     private Item toShow;
 
     private Usuario usuario=null;
 
     private String selectedSize;
+
+    private String selectedColor;
 
     void setItem(Item item){
         this.toShow=item;
@@ -167,18 +173,14 @@ public class ApplicationProductController implements Initializable {
         if(ss.getStockByItem(toShow)!=null) {
             List<Stock> allStock = ss.getStockByItem(toShow);
             String size = "TALLES: ";
-            sizeList = new ListView<String>();
             List<String> allSizes = new ArrayList<>();
             for (Stock stock : allStock) {
                 if (!allSizes.contains(stock.getTalle())) {
                     allSizes.add(stock.getTalle());
                 }
             }
-            ObservableList sizes = FXCollections.observableArrayList();
-            sizes.removeAll(sizes);
-            String a = "Algo";
-            sizes.addAll(a);
-            sizeList.getItems().addAll(sizes);
+            ObservableList<String> listSizes = FXCollections.observableArrayList(allSizes);
+            comboSizesBox.setItems(listSizes);
         }
 
         if(ss.getStockByItem(toShow)!=null){
@@ -190,10 +192,8 @@ public class ApplicationProductController implements Initializable {
                     allColors.add(stock.getColor());
                 }
             }
-            for(int i=0; i<allColors.size();i++){
-                colors= colors+ allColors.get(i) + " ";
-            }
-            productColor.setText(colors);
+            ObservableList<String> listColors = FXCollections.observableArrayList(allColors);
+            comboColorsBox.setItems(listColors);
         }
 
         if(toShow.getStore()!=null){
@@ -217,11 +217,11 @@ public class ApplicationProductController implements Initializable {
 
     private void sideGrid(){
         grid.getChildren().clear();
-        grid.setPadding(new Insets(90, 7, 80, 7));
-        grid.setHgap(100);
+        grid.setPadding(new Insets(50, 7, 50, 7));
+        grid.setHgap(50);
         grid.setVgap(100);
         boolean complete = false;
-        List <Image>images = getImages(toShow);
+        List <Image> images = getImages(toShow);
         while(!complete) {
             for (int i = 0; i < images.size(); i++) {
                 ImageView toAdd = new ImageView();
@@ -266,6 +266,7 @@ public class ApplicationProductController implements Initializable {
         return toAdd;
     }
 
+
     @FXML
     private void buy(ActionEvent event) throws IOException {
         if(usuario==null){
@@ -279,6 +280,9 @@ public class ApplicationProductController implements Initializable {
             window.show();
         }else{
             //hacer lo del stock
+            this.selectedSize = comboSizesBox.getValue();
+            this.selectedColor = comboColorsBox.getValue();
+            ss.buyStock(toShow.getName()+ " " + toShow.getStore().getName() +" " + selectedColor +" " +selectedSize, (long) 1);
         }
     }
 
