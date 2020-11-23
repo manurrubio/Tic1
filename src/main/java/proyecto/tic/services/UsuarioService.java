@@ -34,6 +34,8 @@ public class UsuarioService implements UsuarioManager {
         return usuarioRepository;
     }
 
+    @Autowired
+    public EntityManager em;
     @Override
     public void addClient(Usuario cliente) throws InvalidInformation, ClientAlreadyExists { // Ingresar
 
@@ -73,11 +75,9 @@ public class UsuarioService implements UsuarioManager {
         return administrador;
     } */ // VER PORQUE NO ME CONECTA A MI BDD
 
-    public Iterable<Item> findAllSpecification(List<String> coloresParaFiltrar, List<String> tallesParaFiltrar, List<String> typeItem, List<String> categorys){
+    public Iterable<Item> findAllSpecification(List<String> coloresParaFiltrar, List<String> tallesParaFiltrar, List<String> typeItem, List<String> marcas){
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PersistenceUnit");
-        EntityManager entityManager = factory.createEntityManager();
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Item> cq = cb.createQuery(Item.class);
         Root<Item> item = cq.from(Item.class);
 
@@ -87,7 +87,7 @@ public class UsuarioService implements UsuarioManager {
         if(coloresParaFiltrar.size() > 0){
             List<Item> itemsColor = new ArrayList<>();
             for(String color : coloresParaFiltrar){
-                List<Stock> stockDelColor = (List) stockRepository.findAllByColor(color);
+                List<Stock> stockDelColor = stockRepository.findAllByColor(color);
                 for(Stock stock : stockDelColor){
                     if(stock.getCantidad() > 0){
                         itemsColor.add(stock.getItem());
@@ -103,7 +103,7 @@ public class UsuarioService implements UsuarioManager {
         if(tallesParaFiltrar.size() > 0){
             List<Item> itemsTalle = new ArrayList<>();
             for(String talle : tallesParaFiltrar){
-                List<Stock> stockDelTalle = (List) stockRepository.findAllByTalle(talle);
+                List<Stock> stockDelTalle =  stockRepository.findAllByTalle(talle);
                 for(Stock stock : stockDelTalle){
                     if(stock.getCantidad() > 0){
                         itemsTalle.add(stock.getItem());
@@ -121,22 +121,15 @@ public class UsuarioService implements UsuarioManager {
             predicates.add(cb.or(predicadoType.toArray(new Predicate[0])));
         }
 
-        List<Predicate> predicadoCategoria = new ArrayList<>();
-        if(categorys.size() > 0){
-            categorys.forEach(categoryItem -> predicadoCategoria.add(cb.equal(item.get("category"), categoryItem)));
-            predicates.add(cb.or(predicadoCategoria.toArray(new Predicate[0])));
+        List<Predicate> predicadoMarcas = new ArrayList<>();
+        if(marcas.size() > 0){
+            marcas.forEach(categoryItem -> predicadoMarcas.add(cb.equal(item.get("brand"), categoryItem)));
+            predicates.add(cb.or(predicadoMarcas.toArray(new Predicate[0])));
         }
 
         Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[0]));
         cq.where(finalPredicate);
-        List<Item> items = entityManager.createQuery(cq).getResultList();
-
-        if (entityManager != null) {
-            entityManager.close();
-        }
-        if (factory != null) {
-            factory.close();
-        }
+        List<Item> items = em.createQuery(cq).getResultList();
         return items;
     }
 

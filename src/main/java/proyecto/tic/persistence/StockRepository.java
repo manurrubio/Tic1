@@ -12,7 +12,7 @@ public interface StockRepository extends CrudRepository<Stock,String> {
     Stock findOneById(String id);
     List<Stock> findOneByItem(Item item);
 
-    Stock findAllByColor(String color);
+    List<Stock> findAllByColor(String color);
 
-    Stock findAllByTalle(String talle);
+    List<Stock> findAllByTalle(String talle);
 }

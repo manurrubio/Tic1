@@ -32,6 +32,10 @@ proyecto/tic/ui/client/ApplicationProductWFilterController.java
  proyecto.tic.ui.client.ApplicationProductWFilterController
  proyecto.tic.ui.client.ApplicationProductWFilterController$1
  proyecto.tic.ui.client.ApplicationProductWFilterController$2
+ proyecto.tic.ui.client.ApplicationProductWFilterController$3
+ proyecto.tic.ui.client.ApplicationProductWFilterController$4
+ proyecto.tic.ui.client.ApplicationProductWFilterController$5
+ proyecto.tic.ui.client.ApplicationProductWFilterController$6
 proyecto/tic/services/rmi/TarjetaManager.java
  proyecto.tic.services.rmi.TarjetaManager
 proyecto/tic/services/entities/Stock.java

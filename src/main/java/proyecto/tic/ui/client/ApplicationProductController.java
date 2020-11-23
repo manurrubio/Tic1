@@ -120,7 +120,7 @@ public class ApplicationProductController implements Initializable {
     @FXML
     private JFXComboBox<String> comboColorsBox;
 
-    private Item toShow;
+    private Item toShow = null;
 
     private Usuario usuario=null;
 

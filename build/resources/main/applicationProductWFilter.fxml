@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.client.ApplicationProductWFilterController">
     <children>
@@ -42,42 +53,32 @@
                         <Insets left="17.0" />
                      </VBox.margin>
                   </Label>
-                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: transparent;" text="Color">
-                    <items>
-                        <CheckMenuItem mnemonicParsing="false" text="Blanco" />
-                        <CheckMenuItem mnemonicParsing="false" text="Negro" />
-                        <CheckMenuItem mnemonicParsing="false" text="Azul" />
-                        <CheckMenuItem mnemonicParsing="false" text="Rojo" />
-                        <CheckMenuItem mnemonicParsing="false" text="Gris" />
-                    </items>
-                  </MenuButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: transparent;" text="Marcas">
-                     <items>
-                        <CheckMenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" text="Adidas" />
-                        <CheckMenuItem mnemonicParsing="false" text="Nike" />
-                     </items>
-                  </MenuButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: transparent;" text="Talle">
-                     <items>
-                        <CheckMenuItem mnemonicParsing="false" text="XS" />
-                        <CheckMenuItem mnemonicParsing="false" text="S" />
-                        <CheckMenuItem mnemonicParsing="false" text="M" />
-                        <CheckMenuItem mnemonicParsing="false" text="L" />
-                        <CheckMenuItem mnemonicParsing="false" text="XL" />
-                     </items>
-                  </MenuButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: transparent;" text="Prendas">
-                     <items>
-                        <CheckMenuItem mnemonicParsing="false" text="Blusas" />
-                        <CheckMenuItem mnemonicParsing="false" text="Camisas" />
-                     </items>
-                  </MenuButton>
-                  <JFXButton prefHeight="28.0" prefWidth="79.0" style="-fx-background-radius: 1cm; -fx-background-color: #66e3a9;" text="Filtrar">
+                  <JFXComboBox fx:id="comboMarcaBox" focusColor="#ef9e40fc" prefHeight="25.0" prefWidth="100.0" promptText="Marca">
+                     <VBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="comboTalleBox" focusColor="#ef9e40" prefHeight="25.0" prefWidth="106.0" promptText="Talle">
+                     <VBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="comboColorBox" focusColor="#ef9e40" prefHeight="25.0" prefWidth="119.0" promptText="Color">
+                     <VBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="comboTipoBox" focusColor="#ef9e40" prefHeight="25.0" prefWidth="105.0" promptText="Tipo">
+                     <VBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXButton fx:id="buttonFiltrar" onAction="#applyFilter" prefHeight="28.0" prefWidth="79.0" style="-fx-background-radius: 1cm; -fx-background-color: #66e3a9;" text="Filtrar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets bottom="5.0" left="9.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </JFXButton>
                </children>
