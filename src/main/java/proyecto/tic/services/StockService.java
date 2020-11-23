@@ -47,6 +47,11 @@ public class StockService implements StockManager {
     public void buyStock(String id, Long cantidad){
         Stock stock= stockRepository.findOneById(id);
         stock.setCantidad(stock.getCantidad() - cantidad);
-        stockRepository.save(stock);
+        if(stock.getCantidad()==0){
+            stockRepository.delete(stock);
+        }
+        else{
+            stockRepository.save(stock);
+        }
     }
 }

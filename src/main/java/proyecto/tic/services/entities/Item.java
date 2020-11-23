@@ -18,7 +18,6 @@ public class Item {
     private String type;
     @Column(length = 100)
     private String description;
-
     private int price;
     @Column(length = 25)
     private String category;

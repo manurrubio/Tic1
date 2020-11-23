@@ -60,56 +60,56 @@ public class ApplicationAddTarjetaController {
 
     @FXML
     void regTarjetaButton(ActionEvent event) throws InvalidInformation, TarjetaAlreadyExists {
-        boolean next=true;
+        boolean next = true;
 
-        String firstName=null;
-        if(tName.getText()==null){
+        String firstName = null;
+        if (tName.getText() == null) {
             //error
-            next=false;
-        }else{
-            firstName=tName.getText();
+            next = false;
+        } else {
+            firstName = tName.getText();
         }
 
-        String lastName=null;
-        if(tLastName.getText()==null){
+        String lastName = null;
+        if (tLastName.getText() == null) {
             //error
-            next=false;
-        }else{
-            lastName=tLastName.getText();
+            next = false;
+        } else {
+            lastName = tLastName.getText();
         }
 
-        Long tarjeta=null;
-        if(nTarjeta.getText()==null){
+        Long tarjeta = null;
+        if (nTarjeta.getText() == null) {
             //error
-            next=false;
-        }else{
-            tarjeta= Long.valueOf(nTarjeta.getText());
-            if(ts.getTarjeta(tarjeta)!=null){
+            next = false;
+        } else {
+            tarjeta = Long.valueOf(nTarjeta.getText());
+            if (ts.getTarjeta(tarjeta) != null) {
                 //tarjeta ya existe
-                next=false;
+                next = false;
             }
-        }
 
-        Integer inputCVV=null;
-        if(cvv.getText()==null){
-            //error
-            next=false;
-        }else{
-            inputCVV= Integer.valueOf(cvv.getText());
-        }
+            Integer inputCVV = null;
+            if (cvv.getText() == null) {
+                //error
+                next = false;
+            } else {
+                inputCVV = Integer.valueOf(cvv.getText());
+            }
 
-        String vencimiento=null;
-        if(tVencimiento.getText()==null){
-            //error
-            next=false;
-        }else{
-            vencimiento= tVencimiento.getText();
-        }
+            String vencimiento = null;
+            if (tVencimiento.getText() == null) {
+                //error
+                next = false;
+            } else {
+                vencimiento = tVencimiento.getText();
+            }
 
-        if(next){
-            Tarjeta toAdd= new Tarjeta(tarjeta,vencimiento,firstName,lastName,inputCVV,usuario);
-            ts.addTarjeta(toAdd);
-            //imprimir tarjeta ingresada con exito
+            if (next) {
+                Tarjeta toAdd = new Tarjeta(tarjeta, vencimiento, firstName, lastName, inputCVV, usuario);
+                ts.addTarjeta(toAdd);
+                //imprimir tarjeta ingresada con exito
+            }
         }
     }
 

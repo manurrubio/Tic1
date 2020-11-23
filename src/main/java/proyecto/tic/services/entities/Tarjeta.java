@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Tarjeta {
     @Id
-    private Long nTarjeta;
+    private Long numero;
     @Column(length = 25)
     private String vencimiento;
     @Column(length = 25)
@@ -23,7 +23,7 @@ public class Tarjeta {
     private Usuario usuario;
 
     public Tarjeta(Long nTarjeta, String vencimiento, String nombre, String apellido, Integer cvc, Usuario usuario) {
-        this.nTarjeta = nTarjeta;
+        this.numero = nTarjeta;
         this.vencimiento = vencimiento;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,11 +36,11 @@ public class Tarjeta {
     }
 
     public Long getnTarjeta() {
-        return nTarjeta;
+        return numero;
     }
 
     public void setnTarjeta(Long nTarjeta) {
-        this.nTarjeta = nTarjeta;
+        this.numero = nTarjeta;
     }
 
     public String getVencimiento() {

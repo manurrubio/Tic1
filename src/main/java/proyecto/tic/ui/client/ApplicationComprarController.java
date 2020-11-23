@@ -99,24 +99,25 @@ public class ApplicationComprarController implements Initializable {
             //alert field
         }else{
             String opcion= envio.getValue();
-            String selectedCvv= cvv.getText();
+            Integer selectedCvv= Integer.valueOf(cvv.getText());
             if(ts.getTarjeta(tarjeta).getCvc().equals(selectedCvv)){
                 ss.buyStock(item.getName()+ " " + item.getStore().getName() +" " + selectedColor +" " +selectedSize, (long) 1);
             }else{
                 //CVV incorrecto
             }
-
-
-
         }
-
-
-
     }
 
     @FXML
-    void volver(ActionEvent event) {
-
+    void volver(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+        at.setUsuario(usuario);
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProduct.fxml"));
+        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(paginaInicio);
+        window.show();
     }
 
     @Override

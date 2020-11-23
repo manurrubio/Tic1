@@ -15,17 +15,23 @@ public class TarjetaService implements TarjetaManager {
     @Autowired
     private TarjetaRepository tarjetaRepository;
 
-    @Override
+    /*@Override
     public Tarjeta getTarjeta(Long nTarjeta) {
         Tarjeta tarjeta= tarjetaRepository.findOneByNTarjeta(nTarjeta);
         return tarjeta;
+    }*/
+
+    @Override
+    public Tarjeta getTarjeta(Long numero) {
+        return tarjetaRepository.findOneByNumero(numero);
     }
+
     @Override
     public void addTarjeta(Tarjeta tarjeta) throws InvalidInformation, TarjetaAlreadyExists { // Funcion para el Admin para agregar Marcas
         if(tarjeta.getnTarjeta()==null||tarjeta.getNombre()==null||tarjeta.getApellido()==null||tarjeta.getCvc()==null||tarjeta.getVencimiento()==null||tarjeta.getUsuario()==null){
             throw new InvalidInformation();
         }
-        if(tarjetaRepository.findOneByNTarjeta(tarjeta.getnTarjeta()) != null){
+        if(tarjetaRepository.findOneByNumero(tarjeta.getnTarjeta()) != null){
             throw new TarjetaAlreadyExists();
         }
         tarjetaRepository.save(tarjeta);

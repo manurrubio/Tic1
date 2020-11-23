@@ -1,7 +1,10 @@
 package proyecto.tic.ui.client;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,8 +26,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.ItemService;
+import proyecto.tic.services.StockService;
 import proyecto.tic.services.UsuarioService;
 import proyecto.tic.services.entities.Item;
+import proyecto.tic.services.entities.Stock;
 import proyecto.tic.services.entities.Usuario;
 
 import javax.imageio.ImageIO;
@@ -32,6 +37,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -44,6 +50,8 @@ public class ApplicationProductWFilterController  implements Initializable{
     private ApplicationProductController pc;
     @Autowired
     private ItemService is;
+    @Autowired
+    private StockService ss;
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -56,6 +64,21 @@ public class ApplicationProductWFilterController  implements Initializable{
     private JFXButton signInButton;
     @FXML
     private GridPane grid;
+    @FXML
+    private JFXComboBox<String> comboMarcaBox;
+
+    @FXML
+    private JFXComboBox<String> comboTalleBox;
+
+    @FXML
+    private JFXComboBox<String> comboColorBox;
+
+    @FXML
+    private JFXComboBox<String> comboTipoBox;
+
+    @FXML
+    private JFXButton buttonFiltrar;
+
     @FXML
     private ImageView toAdd;
     private Usuario usuario=null;
@@ -98,6 +121,20 @@ public class ApplicationProductWFilterController  implements Initializable{
         if (usuario!=null){
             loginButton.setText("Cerrar sesión");
         }
+            List<Stock> allStock = ss.getStockByItem(toShow);
+            String size = "TALLES: ";
+            List<String> allSizes = new ArrayList<>();
+            for (Stock stock : allStock) {
+                if (!allSizes.contains(stock.getTalle())) {
+                    allSizes.add(stock.getTalle());
+                }
+            }
+            ObservableList<String> listSizes = FXCollections.observableArrayList(allSizes);
+            comboSizesBox.setItems(listSizes
+
+
+
+
 
         grid.getChildren().clear();
         grid.setPadding(new Insets(90, 7, 80, 7));
