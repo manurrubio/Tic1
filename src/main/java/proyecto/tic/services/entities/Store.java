@@ -14,6 +14,12 @@ public class Store {
     @Column(length = 100)
     private String direccion;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinTable(name = "STORE_ADMIN",
+            joinColumns = @JoinColumn(name="STORE_ID"),
+            inverseJoinColumns = @JoinColumn(name="ADMIN_ID")
+    )
+    private Admin admin;
 
 
 

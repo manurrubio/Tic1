@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import proyecto.tic.AApplicationFX;
 import proyecto.tic.services.BrandService;
+import proyecto.tic.services.entities.Admin;
 import proyecto.tic.services.entities.Brand;
 import proyecto.tic.services.exceptions.BrandAlreadyExists;
 import proyecto.tic.services.exceptions.BrandNotExist;
@@ -56,6 +57,12 @@ public class AddBrandController {
 
     private byte[] pic;
 
+    private Admin admi;
+
+    void login(Admin admi){
+        this.admi=admi;
+    }
+
     @FXML
     void addBrand(ActionEvent event) throws BrandNotExist, BrandAlreadyExists, InvalidInformation, IOException {
         boolean next=true;
@@ -77,7 +84,7 @@ public class AddBrandController {
         }
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(paginaInicio);
@@ -106,7 +113,7 @@ public class AddBrandController {
     void volver(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(paginaInicio);

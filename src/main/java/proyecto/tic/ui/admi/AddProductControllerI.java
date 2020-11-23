@@ -12,11 +12,10 @@ import org.springframework.stereotype.Component;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import proyecto.tic.AApplicationFX;
-import proyecto.tic.CApplicationFX;
 import proyecto.tic.persistence.BrandRepository;
 import proyecto.tic.persistence.StoreRepository;
+import proyecto.tic.services.entities.Admin;
 import proyecto.tic.services.entities.Brand;
 import proyecto.tic.services.entities.Store;
 import proyecto.tic.ui.client.ApplicationProductWFilterController;
@@ -62,6 +61,12 @@ public class AddProductControllerI {
 
     @FXML
     private JFXTextField itemStore;
+
+    private Admin admi;
+
+    void login(Admin admi){
+        this.admi=admi;
+    }
 
     @FXML
     private void next(ActionEvent event) throws IOException{
@@ -114,7 +119,7 @@ public class AddProductControllerI {
     void volver(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(paginaInicio);

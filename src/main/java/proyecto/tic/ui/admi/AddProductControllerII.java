@@ -15,15 +15,11 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import proyecto.tic.AApplicationFX;
-import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.BrandService;
 import proyecto.tic.services.ItemService;
 import proyecto.tic.services.StockService;
 import proyecto.tic.services.StoreService;
-import proyecto.tic.services.entities.Brand;
-import proyecto.tic.services.entities.Item;
-import proyecto.tic.services.entities.Stock;
-import proyecto.tic.services.entities.Store;
+import proyecto.tic.services.entities.*;
 import proyecto.tic.services.exceptions.BrandNotExist;
 import proyecto.tic.services.exceptions.InvalidInformation;
 import proyecto.tic.services.exceptions.ItemAlreadyExists;
@@ -32,7 +28,6 @@ import proyecto.tic.ui.client.ApplicationProductWFilterController;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
 
 @Component
 @FxmlView("/applicationAddProductII.fxml")
@@ -111,6 +106,12 @@ public class AddProductControllerII  {
     private byte[] iPic3;
     private byte[] iPic4;
 
+    private Admin admi;
+
+    void login(Admin admi){
+        this.admi=admi;
+    }
+
 
     public void setAtributos(String iName, String iType, String iDesc, int iPrice, String iCat,Brand iBrand, Store iStore){
         this.itemName=iName;
@@ -141,7 +142,7 @@ public class AddProductControllerII  {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(paginaInicio);

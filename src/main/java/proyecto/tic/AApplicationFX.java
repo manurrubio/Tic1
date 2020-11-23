@@ -10,8 +10,7 @@ import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-import proyecto.tic.ui.admi.ApplicationMenuAdmiController;
-import proyecto.tic.ui.client.ApplicationMenuController;
+import proyecto.tic.ui.admi.ApplicationMenuAdmiControllerII;
 
 
 @SpringBootApplication
@@ -37,7 +36,7 @@ public class AApplicationFX extends Application {
     @Override
     public void start(Stage stage) {
         FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
-        Parent root = fxWeaver.loadView(ApplicationMenuAdmiController.class);
+        Parent root = fxWeaver.loadView(ApplicationMenuAdmiControllerII.class);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

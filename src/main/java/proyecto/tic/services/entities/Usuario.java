@@ -3,9 +3,6 @@ package proyecto.tic.services.entities;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "DISCRIMINATOR",
-        discriminatorType = DiscriminatorType.STRING) // Usuario no necesita Discriminatorvalue porque no vamos a tener en la bdd usuarios, solo clientes o administradores
 public class Usuario {
     @Id
     private int ci;

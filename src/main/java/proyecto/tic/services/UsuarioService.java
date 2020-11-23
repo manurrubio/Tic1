@@ -3,7 +3,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyecto.tic.persistence.UsuarioRepository;
 import proyecto.tic.services.entities.Admin;
-import proyecto.tic.services.entities.Client;
 import proyecto.tic.services.entities.Usuario;
 import proyecto.tic.services.exceptions.*;
 import proyecto.tic.services.rmi.UsuarioManager;
@@ -19,7 +18,7 @@ public class UsuarioService implements UsuarioManager {
     }
 
     @Override
-    public void addClient(Client cliente) throws InvalidInformation, ClientAlreadyExists { // Ingresar
+    public void addClient(Usuario cliente) throws InvalidInformation, ClientAlreadyExists { // Ingresar
 
         if (cliente.getFirstName() == null || "".equals(cliente.getFirstName()) || cliente.getLastName() == null || "".equals(cliente.getLastName()) || cliente.getEmail() == null || "".equals(cliente.getEmail()) || cliente.getPassword() == null || cliente.getTelefono() < 0 || cliente.getDireccion() == null || "".equals(cliente.getDireccion())) {
 
@@ -31,22 +30,6 @@ public class UsuarioService implements UsuarioManager {
         }
 
         usuarioRepository.save(cliente);
-
-    }
-
-    @Override
-    public void addAdmin(Admin administrador) throws InvalidInformation, AdminAlreadyExists { // podemos hacer que un admin le cree la cuenta a otro admin
-
-        if (administrador.getFirstName() == null || "".equals(administrador.getFirstName()) || administrador.getLastName() == null || "".equals(administrador.getLastName()) || administrador.getEmail() == null || "".equals(administrador.getEmail()) || administrador.getPassword() == null || administrador.getTelefono() < 0 || administrador.getDireccion() == null || "".equals(administrador.getDireccion())) {
-
-            throw new InvalidInformation();
-
-        } else if (usuarioRepository.findOneByCi(administrador.getCi()) != null) {
-
-            throw new AdminAlreadyExists();
-        }
-
-        usuarioRepository.save(administrador);
 
     }
 
@@ -79,8 +62,8 @@ public class UsuarioService implements UsuarioManager {
     }
 
     @Override
-    public void updateClient(Client cliente){ // Esta funcion la usa solo un administrador para actualizar los datos de un cliente o VOLVER A UN CLIENTE ADMIN (ARREGLAR)
-        Client clienteExistente = ((Client) usuarioRepository.findOneByCi(cliente.getCi()));
+    public void updateClient(Usuario cliente){ // Esta funcion la usa solo un administrador para actualizar los datos de un cliente o VOLVER A UN CLIENTE ADMIN (ARREGLAR)
+        Usuario clienteExistente =  usuarioRepository.findOneByCi(cliente.getCi());
         clienteExistente.setFirstName(cliente.getFirstName());
         clienteExistente.setLastName(cliente.getLastName());
         clienteExistente.setEmail(cliente.getEmail());

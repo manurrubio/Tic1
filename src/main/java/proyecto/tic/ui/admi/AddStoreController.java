@@ -15,12 +15,11 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import proyecto.tic.AApplicationFX;
-import proyecto.tic.services.StockService;
 import proyecto.tic.services.StoreService;
+import proyecto.tic.services.entities.Admin;
 import proyecto.tic.services.entities.Store;
 import proyecto.tic.services.exceptions.InvalidInformation;
 import proyecto.tic.services.exceptions.StoreAlreadyExists;
-import proyecto.tic.services.exceptions.StoreNotExist;
 
 import java.io.IOException;
 
@@ -48,6 +47,12 @@ public class AddStoreController {
     @FXML
     private JFXTextField storeDir;
 
+    private Admin admi;
+
+    void login(Admin admi){
+        this.admi=admi;
+    }
+
     @FXML
     void addStore(ActionEvent event) throws StoreAlreadyExists, InvalidInformation {
         boolean next=true;
@@ -71,7 +76,7 @@ public class AddStoreController {
     void volver(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmi.fxml"));
+        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(paginaInicio);

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import proyecto.tic.persistence.ItemRepository;
-import proyecto.tic.services.entities.Client;
 import proyecto.tic.services.entities.Item;
 import proyecto.tic.services.entities.ItemSpecification;
 import proyecto.tic.services.exceptions.ClientAlreadyExists;

@@ -1,6 +1,6 @@
 package proyecto.tic.services.rmi;
 
-import proyecto.tic.services.entities.Client;
+
 import proyecto.tic.services.entities.Store;
 import proyecto.tic.services.exceptions.ClientAlreadyExists;
 import proyecto.tic.services.exceptions.InvalidInformation;

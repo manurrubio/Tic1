@@ -4,7 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 import proyecto.tic.services.entities.Item;
 import proyecto.tic.services.entities.Stock;
 
+import java.util.List;
+
 public interface StockRepository extends CrudRepository<Stock,String> {
     Stock findOneById(String id);
-    Stock findOneByItem(Item item);
+    List<Stock> findOneByItem(Item item);
 }

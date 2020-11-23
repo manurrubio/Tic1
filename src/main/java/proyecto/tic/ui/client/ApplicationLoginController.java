@@ -76,7 +76,7 @@ public class ApplicationLoginController {
         if(us.getUsuario(uCi)==null){
             next=false;
         }
-        if(us.getUsuario(uCi)!=null && us.getUsuario(uCi).getPassword()!=password){
+        if(us.getUsuario(uCi)!=null && !us.getUsuario(uCi).getPassword().equals(password)){
             next=false;
         }
         if(next==true){

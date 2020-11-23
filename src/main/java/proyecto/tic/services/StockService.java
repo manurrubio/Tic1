@@ -3,11 +3,11 @@ package proyecto.tic.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proyecto.tic.persistence.StockRepository;
-import proyecto.tic.persistence.StoreRepository;
 import proyecto.tic.services.entities.Item;
 import proyecto.tic.services.entities.Stock;
-import proyecto.tic.services.entities.Store;
 import proyecto.tic.services.rmi.StockManager;
+
+import java.util.List;
 
 @Service
 public class StockService implements StockManager {
@@ -30,5 +30,11 @@ public class StockService implements StockManager {
     }
 
     @Override
-    public Stock getStockByItem(Item item){ return stockRepository.findOneByItem(item);}
+    public List<Stock> getStockByItem(Item item){ return stockRepository.findOneByItem(item);}
+
+    @Override
+    public void buyStock(String id, Long cantidad){
+        Stock stock= getStock(id);
+        stock.setCantidad(stock.getCantidad() - cantidad);
+    }
 }

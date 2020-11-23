@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.admi.ApplicationMenuAdmiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.admi.ApplicationMenuAdmiControllerI">
    <children>
       <HBox>
          <children>
@@ -27,7 +27,7 @@
       </HBox>
       <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;">
          <children>
-            <Label layoutX="303.0" layoutY="2.0" prefHeight="21.0" prefWidth="187.0" text="Bienvenido/a">
+            <Label layoutX="209.0" layoutY="3.0" prefHeight="35.0" prefWidth="363.0" text="Bienvenido/a administrador">
                <font>
                   <Font name="Berlin Sans FB" size="31.0" />
                </font>
@@ -38,28 +38,12 @@
          <center>
             <VBox alignment="TOP_CENTER" prefHeight="307.0" prefWidth="698.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="addProductButton" onAction="#addProduct" prefHeight="61.0" prefWidth="232.0" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="INGRESAR PRODUCTO">
+                  <JFXButton fx:id="loginAdmiButton" onAction="#loginAdmi" prefHeight="61.0" prefWidth="232.0" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="INICIAR SESIÓN">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="addBrandButton" onAction="#addBrand" prefHeight="61.0" prefWidth="232.0" style="-fx-background-radius: 1cm; -fx-background-color: #FF6F91;" text="INGRESAR MARCA">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="addStoreButton" onAction="#addStore" prefHeight="61.0" prefWidth="232.0" style="-fx-background-radius: 1cm; -fx-background-color: #d16ba5;" text="INGRESAR TIENDA">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="130.0" />
                      </VBox.margin>
                   </JFXButton>
                </children>

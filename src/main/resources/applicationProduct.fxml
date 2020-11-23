@@ -127,12 +127,17 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="productSize" prefHeight="17.0" prefWidth="188.0" text="Talle">
+                        <Label fx:id="productSize" prefHeight="17.0" prefWidth="188.0" text="Talles">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="productStore" prefHeight="17.0" prefWidth="220.0" text="Tienda">
+                        <Label fx:id="productColor" prefHeight="17.0" prefWidth="220.0" text="Colores">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="productStore" prefHeight="17.0" prefWidth="220.0" text="Tiendas">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
@@ -173,7 +178,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                      <BorderPane.margin>
                         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

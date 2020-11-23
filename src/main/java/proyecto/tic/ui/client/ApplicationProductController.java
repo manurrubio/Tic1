@@ -26,6 +26,7 @@ import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.ItemService;
 import proyecto.tic.services.StockService;
 import proyecto.tic.services.entities.Item;
+import proyecto.tic.services.entities.Stock;
 import proyecto.tic.services.entities.Usuario;
 
 import javax.imageio.ImageIO;
@@ -93,7 +94,7 @@ public class ApplicationProductController implements Initializable {
     private Label productPrice;
 
     @FXML
-    private Label pDescription;
+    private Label productColor;
 
     @FXML
     private JFXButton modaH;
@@ -150,13 +151,42 @@ public class ApplicationProductController implements Initializable {
             productBrand.setText("MARCA: " + toShow.getBrand().getName());
         }else{
             productBrand.setText(null);
-        }/*
-        if(ss.getStockByItem(toShow)!=null){
-            productSize.setText(ss.getStockByItem(toShow).getTalle());
-        }else{
-            productSize.setText(null);
         }
-*/
+
+        if(ss.getStockByItem(toShow)!=null){
+            List<Stock> allStock=ss.getStockByItem(toShow);
+            String size="TALLES: ";
+            List<String> allSizes= new ArrayList<>();
+            for (Stock stock : allStock) {
+                if (!allSizes.contains(stock.getTalle())) {
+                    allSizes.add(stock.getTalle());
+                }
+            }
+            for(int i=0; i<allSizes.size();i++){
+                size= size+ allSizes.get(i) + " ";
+            }
+            productSize.setText(size);
+        }
+
+        if(ss.getStockByItem(toShow)!=null){
+            List<Stock> allStock=ss.getStockByItem(toShow);
+            String colors="COLORES: ";
+            List<String> allColors= new ArrayList<>();
+            for (Stock stock : allStock) {
+                if (!allColors.contains(stock.getColor())) {
+                    allColors.add(stock.getColor());
+                }
+            }
+            for(int i=0; i<allColors.size();i++){
+                colors= colors+ allColors.get(i) + " ";
+            }
+            productColor.setText(colors);
+        }
+
+        if(toShow.getStore()!=null){
+            productStore.setText("TIENDAS: "+toShow.getStore().getName());
+        }
+
         if((Integer)toShow.getPrice()!=null){
             productPrice.setText("PRECIO: "+ ((Integer)toShow.getPrice()).toString());
         }

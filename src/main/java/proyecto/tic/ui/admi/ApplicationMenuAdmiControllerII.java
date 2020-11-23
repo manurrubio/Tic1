@@ -10,17 +10,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import proyecto.tic.AApplicationFX;
-import proyecto.tic.CApplicationFX;
+import proyecto.tic.services.entities.Admin;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-@FxmlView("/applicationMenuAdmi.fxml")
-public class ApplicationMenuAdmiController implements Initializable {
+@FxmlView("/applicationMenuAdmiII.fxml")
+public class ApplicationMenuAdmiControllerII implements Initializable {
+    @Autowired
+    private AddBrandController ab;
+    @Autowired
+    private AddProductControllerI ap;
+    @Autowired
+    private AddStoreController as;
+
     @FXML
     private JFXButton addProductButton;
 
@@ -30,10 +38,16 @@ public class ApplicationMenuAdmiController implements Initializable {
     @FXML
     private JFXButton addStoreButton;
 
+    private Admin admi;
+
+    void login(Admin admi){
+        this.admi=admi;
+    }
     @FXML
     void addBrand(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+        ab.login(admi);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddBrand.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -45,6 +59,7 @@ public class ApplicationMenuAdmiController implements Initializable {
     void addProduct(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+        ap.login(admi);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProductI.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -56,6 +71,7 @@ public class ApplicationMenuAdmiController implements Initializable {
     void addStore(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+        as.login(admi);
         Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddStore.fxml"));
         Scene paginaInicio = new Scene(inicioSesion, 780, 450);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

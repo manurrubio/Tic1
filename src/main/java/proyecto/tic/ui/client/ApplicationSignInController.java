@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.UsuarioService;
-import proyecto.tic.services.entities.Client;
+import proyecto.tic.services.entities.Usuario;
 import proyecto.tic.services.exceptions.ClientAlreadyExists;
 import proyecto.tic.services.exceptions.InvalidInformation;
 
@@ -59,7 +59,7 @@ public class ApplicationSignInController{
         String password= pasBox.getText();
 //agregar en scene builder
         try {
-            Client client = new Client(id,firstName,lastName,email,password,telefono,direccion);
+            Usuario client = new Usuario(id,firstName,lastName,email,password,telefono,direccion);
             service.addClient(client);
         } catch (InvalidInformation | ClientAlreadyExists invalidInformation) {
             clean();
