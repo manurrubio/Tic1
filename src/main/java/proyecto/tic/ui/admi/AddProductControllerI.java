@@ -2,10 +2,12 @@ package proyecto.tic.ui.admi;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,12 @@ import proyecto.tic.services.entities.Store;
 import proyecto.tic.ui.client.ApplicationProductWFilterController;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Component
 @FxmlView("/applicationAddProductI.fxml")
-public class AddProductControllerI {
+public class AddProductControllerI implements Initializable {
     @Autowired
     private ApplicationProductWFilterController ap;
     @Autowired
@@ -37,13 +41,13 @@ public class AddProductControllerI {
     private AddProductControllerII apii;
 
     @FXML
-    private JFXTextField itemName;
-
-    @FXML
     private JFXButton siguienteButton;
 
     @FXML
     private JFXButton volverButton;
+
+    @FXML
+    private JFXTextField itemName;
 
     @FXML
     private JFXTextField itemDescription;
@@ -71,64 +75,75 @@ public class AddProductControllerI {
 
     @FXML
     private void next(ActionEvent event) throws IOException{
-        boolean next=true;
-        String iName= itemName.getText();
-
-        String iType= itemType.getText();
-
-        String iDesc= itemDescription.getText();
-
-        int iPrice = Integer.parseInt(itemPrice.getText());
-        if(iPrice<=0){
+        if(itemName.getText() == null || itemPrice.getText() == null || itemBrand.getText() == null || itemCategory.getText() == null || itemType.getText() == null || itemStore.getText() == null || itemDescription.getText()==null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Campos nulos");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese todos los campos");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else if(Integer.parseInt(itemPrice.getText()) <= 0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Precio incorrecto");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el precio nuevamente");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
-                next=false;
         }
-
-        String iCat= itemCategory.getText();
-        if(!iCat.equals("hombre")&&!iCat.equals("mujer")&&!iCat.equals("niño")){
+        else if(!itemCategory.getText().equals("hombre")&&!itemCategory.getText().equals("mujer")&&!itemCategory.getText().equals("niño")){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Categoría incorrecta");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese una categoría válida (hombre, mujer, niño)");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
-            next=false;
         }
-
-        String iBrand= itemBrand.getText();
-        Brand brand=  br.findOneByName(iBrand);
-        if(br.findOneByName(iBrand)==null) {
+        else if(br.findOneByName(itemBrand.getText())==null) {
+            Brand brand=  br.findOneByName(itemBrand.getText());
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Marca no existe");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese una marca existente");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
-            next = false;
         }
-
-        String iStore= itemStore.getText();
-        Store store= sr.findOneByName(iStore);
-        if(sr.findOneByName(iStore)==null){
+        else if(sr.findOneByName(itemStore.getText())==null){
+            Store store= sr.findOneByName(itemStore.getText());
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Tienda no existe");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese una tienda existente");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
-            next=false;
-        }
-
-        if(next) {
-            apii.setAtributos(iName, iType, iDesc, iPrice, iCat, brand,store);
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProductII.fxml"));
-            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(paginaInicio);
-            window.show();
+        }else
+            {
+                int iPrice = Integer.parseInt(itemPrice.getText());
+                Brand iBrand = br.findOneByName(itemBrand.getText());
+                Store iStore = sr.findOneByName(itemStore.getText());
+                apii.setAtributos(itemName.getText(), itemType.getText(), itemDescription.getText(), iPrice, itemCategory.getText(), iBrand, iStore);
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+                Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationAddProductII.fxml"));
+                Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(paginaInicio);
+                window.show();
         }
     }
 
@@ -144,4 +159,14 @@ public class AddProductControllerI {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        itemName.setText(null);
+        itemDescription.setText(null);
+        itemPrice.setText(null);
+        itemBrand.setText(null);
+        itemCategory.setText(null);
+        itemType.setText(null);
+        itemStore.setText(null);
+    }
 }

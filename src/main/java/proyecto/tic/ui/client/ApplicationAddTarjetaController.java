@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,36 +79,67 @@ public class ApplicationAddTarjetaController implements Initializable {
             alert.setTitle("Nombre del titular nulo");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el nombre del titular");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
         } else if (apellido.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Apellido del titular nulo");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el apellido del titular");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
         } else if (numero.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Número de tarjeta incorrecto");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el número de tarjeta");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
         } else if (cvv.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("CVV de tarjeta incorrecto");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el CVV de su tarjeta");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
         } else if (vencimiento.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Vencimiento de tarjeta nulo");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el vencimiento de su tarjeta");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
-        } else {
+        }else if(numero.getText()!= null && ts.getTarjeta(Long.parseLong(numero.getText())) != null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Tarjeta ya existe");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese una tarjeta que no esté registrada");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else {
             String firstName = name.getText();
             String lastName = apellido.getText();
-            Long tarjeta = Long.valueOf(numero.getText());
-            Integer inputCVV = Integer.valueOf(cvv.getText());
+            Long tarjeta = Long.parseLong(numero.getText());
+            Integer inputCVV = Integer.parseInt(cvv.getText());
             String venc = vencimiento.getText();
             Tarjeta toAdd = new Tarjeta(tarjeta, venc, firstName, lastName, inputCVV, usuario);
             ts.addTarjeta(toAdd);
@@ -115,6 +147,10 @@ public class ApplicationAddTarjetaController implements Initializable {
             alert.setTitle("Tarjeta ingresada");
             alert.setHeaderText(null);
             alert.setContentText("Tarjeta ingresada con éxito");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             ButtonType buttonTypeOk = new ButtonType("Ok");
             alert.getButtonTypes().setAll(buttonTypeOk);
 

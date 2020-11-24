@@ -5,11 +5,13 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -28,13 +30,15 @@ import proyecto.tic.services.exceptions.InvalidInformation;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 
 @Component
 @FxmlView("/applicationAddBrand.fxml")
-public class AddBrandController {
+public class AddBrandController implements Initializable {
     @Autowired
     private BrandService bs;
 
@@ -69,40 +73,51 @@ public class AddBrandController {
 
     @FXML
     void addBrand(ActionEvent event) throws BrandNotExist, BrandAlreadyExists, InvalidInformation, IOException {
-        boolean next=true;
-        String bName= brandName.getText();
-        if(bs.getRepository().findOneByName(bName)!=null){
-            next=false;
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Marca ya existe");
-            alert.setHeaderText(null);
-            alert.setContentText("Por favor ingrese una marca inexistente");
-            alert.showAndWait();
-        }
-        if(bName==null){
-            next=false;
+        if(brandName.getText() == null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Campo nulo");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el nombre de la marca");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
         }
-        if(pic==null){
-            next=false;
+        else if(bs.getRepository().findOneByName(brandName.getText())!=null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Marca ya existe");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese una marca inexistente");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else if(pic==null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Imagen no encontrada");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese una imagen");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
         }
-        if(next==true) {
-            Brand toAdd = new Brand(bName, pic);
+        else{
+            Brand toAdd = new Brand(brandName.getText(), pic);
             bs.addBrand(toAdd);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Marca ingresada");
             alert.setHeaderText(null);
             alert.setContentText("Marca ingresada con éxito");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             ButtonType buttonTypeOk = new ButtonType("Ok");
             alert.getButtonTypes().setAll(buttonTypeOk);
 
@@ -149,4 +164,8 @@ public class AddBrandController {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        brandName.setText(null);
+    }
 }

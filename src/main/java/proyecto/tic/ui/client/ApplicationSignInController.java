@@ -6,9 +6,12 @@ import com.jfoenix.controls.JFXPasswordField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -21,11 +24,13 @@ import proyecto.tic.services.exceptions.ClientAlreadyExists;
 import proyecto.tic.services.exceptions.InvalidInformation;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 @Component
 @FxmlView("/applicationSignIn.fxml")
-public class ApplicationSignInController{
+public class ApplicationSignInController implements Initializable {
     @FXML
     private TextField ciBox;
     @FXML
@@ -49,31 +54,51 @@ public class ApplicationSignInController{
     private UsuarioService service;
 
     @FXML
-    private void signIn(ActionEvent event) throws IOException {
-        int id= Integer.parseInt(ciBox.getText());
-        String firstName= nameBox.getText();
-        String lastName= lastNameBox.getText();
-        String email= mailBox.getText();
-        int telefono= Integer.parseInt(telBox.getText());
-        String direccion= dirBox.getText();
-        String password= pasBox.getText();
-//agregar en scene builder
-        try {
-            Usuario client = new Usuario(id,firstName,lastName,email,password,telefono,direccion);
-            service.addClient(client);
-        } catch (InvalidInformation | ClientAlreadyExists invalidInformation) {
-            clean();
+    private void signIn(ActionEvent event) throws IOException, ClientAlreadyExists, InvalidInformation {
+        Integer id = null;
+        String firstName = nameBox.getText();
+        String lastName = lastNameBox.getText();
+        String email = mailBox.getText();
+        Integer telefono = null;
+        String direccion = dirBox.getText();
+        String password = pasBox.getText();
+        if (ciBox.getText() == null || nameBox.getText() == null || lastNameBox.getText() == null || mailBox.getText() == null || telBox.getText() == null || dirBox.getText() == null || pasBox.getText() == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Información incorrecta");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese los datos nuevamente");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+
         }
+        else if(service.getUsuario(Integer.parseInt(ciBox.getText()))!= null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Usuario ya existe");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese los datos nuevamente");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
 
-        clean();
+        }
+        else{
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
+            Usuario client = new Usuario(id, firstName, lastName, email, password, telefono, direccion);
+            service.addClient(client);
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
+        }
     }
 
     @FXML
@@ -88,13 +113,16 @@ public class ApplicationSignInController{
 
     }
 
-    private void clean(){
-        ciBox.clear();
-        nameBox.clear();
-        lastNameBox.clear();
-        mailBox.clear();
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ciBox.setText(null);
+        nameBox.setText(null);
+        lastNameBox.setText(null);
+        mailBox.setText(null);
+        telBox.setText(null);
+        dirBox.setText(null);
+        pasBox.setText(null);
     }
-
-
-
 }

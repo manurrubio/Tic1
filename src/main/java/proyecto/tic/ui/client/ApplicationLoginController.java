@@ -6,10 +6,12 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,12 @@ import proyecto.tic.services.entities.Item;
 import proyecto.tic.services.entities.Usuario;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Component
 @FxmlView("/applicationLogin.fxml")
-public class ApplicationLoginController {
+public class ApplicationLoginController implements Initializable {
     @Autowired
     private UsuarioService us;
     @Autowired
@@ -72,29 +76,45 @@ public class ApplicationLoginController {
 
     public void login(ActionEvent event) throws IOException {
         boolean next=true;
-        int uCi= Integer.parseInt(usuarioID.getText());
+        Integer uCi= null;
         String password= usuarioPassword.getText();
-        if(us.getUsuario(uCi)==null){
-            next=false;
+        if(usuarioID.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Usuario nulo");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese un usuario");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else if(us.getUsuario(Integer.parseInt(usuarioID.getText()))==null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Usuario inexistente");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese un usuario existente");
-
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
+
         }
-        if(us.getUsuario(uCi)!=null && !us.getUsuario(uCi).getPassword().equals(password)){
-            next=false;
+        else if(us.getUsuario(Integer.parseInt(usuarioID.getText()))!=null && !us.getUsuario(Integer.parseInt(usuarioID.getText())).getPassword().equals(password)){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Contraseña incorrecta");
             alert.setHeaderText(null);
             alert.setContentText("Por favor intente nuevamente");
-
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
         }
-        if(next==true){
+        else{
+            uCi = Integer.parseInt(usuarioID.getText());
             this.usuario= us.getUsuario(uCi);
-            //Agregué el usuario, hago cambio de pantalla
             if(item==null) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
@@ -117,5 +137,11 @@ public class ApplicationLoginController {
             }
         }
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        usuarioID.setText(null);
+        usuarioPassword.setText(null);
     }
 }

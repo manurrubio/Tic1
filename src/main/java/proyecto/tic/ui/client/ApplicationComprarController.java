@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,30 +100,75 @@ public class ApplicationComprarController implements Initializable {
     @FXML
     void buy(ActionEvent event) throws IOException {
 
-        Long tarjeta = Long.valueOf(nTarjeta.getText());
-        if (ts.getTarjeta(tarjeta) == null) {
+        Long tarjeta = null;
+        if(nTarjeta.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Número de tarjeta nulo");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese el número de su tarjeta");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else if(cvv.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("CVV de tarjeta nulo");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese el cvv de su tarjeta");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else if (ts.getTarjeta(Long.parseLong(nTarjeta.getText())) == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Numero de tarjeta incorrecta");
             alert.setHeaderText(null);
-            alert.setContentText("Porfavor introduzca un numero de tarjeta válido");
+            alert.setContentText("Porfavor introduzca un numero de tarjeta que este registrada");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
-        } else {
-            String opcion = envio.getValue();
-            if (opcion == null) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Seleccione opcion de envío");
-                alert.setHeaderText(null);
-                alert.setContentText("Debe seleccionar una opcion de envío");
-                alert.showAndWait();
-
-            } else {
-                Integer selectedCvv = Integer.valueOf(cvv.getText());
+        }
+        else if(!ts.getTarjeta(Long.parseLong(nTarjeta.getText())).getCvc().equals(Integer.parseInt(cvv.getText()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Numero de tarjeta o cvv incorrecto");
+            alert.setHeaderText(null);
+            alert.setContentText("El numero de tarjeta no coincide con el cvv");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else if( envio.getValue() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Seleccione opcion de envío");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe seleccionar una opcion de envío");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else {
+                tarjeta = Long.parseLong(nTarjeta.getText());
+                Integer selectedCvv = Integer.parseInt(cvv.getText());
                 if (ts.getTarjeta(tarjeta).getCvc().equals(selectedCvv)) {
                     ss.buyStock(item.getName() + " " + item.getStore().getName() + " " + selectedColor + " " + selectedSize, (long) 1);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Compra exitosa");
                     alert.setHeaderText(null);
                     alert.setContentText("Su compra fue realizada con éxito");
+                    DialogPane dialogPane = alert.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("/myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
                     ButtonType buttonTypeOk = new ButtonType("Ok");
                     alert.getButtonTypes().setAll(buttonTypeOk);
 
@@ -138,15 +184,6 @@ public class ApplicationComprarController implements Initializable {
                         window.setScene(paginaInicio);
                         window.show();
                     }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Cvv incorrecto");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Porfavor introduzca un cvv válido");
-                    alert.showAndWait();
-
-
-                }
             }
         }
     }
@@ -167,6 +204,8 @@ public class ApplicationComprarController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> listEnvio = FXCollections.observableArrayList("Retiro en el local", "Envío a domicilio");
         envio.setItems(listEnvio);
+        cvv.setText(null);
+        nTarjeta.setText(null);
     }
 
 
