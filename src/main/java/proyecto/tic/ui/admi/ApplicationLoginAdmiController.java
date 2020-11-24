@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,9 +62,19 @@ public class ApplicationLoginAdmiController {
         String password= usuarioPassword.getText();
         if(as.getAdmi(uCi)==null){
             next=false;
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Administrador no existe");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese existente");
+            alert.showAndWait();
         }
         if(as.getAdmi(uCi)!=null && !as.getAdmi(uCi).getPassword().equals(password)){
             next=false;
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Contraseña incorrecta");
+            alert.setHeaderText(null);
+            alert.setContentText("Ingrese contraseña nuevamente");
+            alert.showAndWait();
         }
         if(next==true){
             this.admi= as.getAdmi(uCi);

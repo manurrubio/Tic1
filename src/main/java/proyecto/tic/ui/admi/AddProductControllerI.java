@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,27 +80,43 @@ public class AddProductControllerI {
 
         int iPrice = Integer.parseInt(itemPrice.getText());
         if(iPrice<=0){
-                itemPrice.setText("Precio incorrecto");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Precio incorrecto");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese el precio nuevamente");
+            alert.showAndWait();
                 next=false;
         }
 
         String iCat= itemCategory.getText();
         if(!iCat.equals("hombre")&&!iCat.equals("mujer")&&!iCat.equals("niño")){
-            itemCategory.setText("Categoría incorrecta");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Categoría incorrecta");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese una categoría válida (hombre, mujer, niño)");
+            alert.showAndWait();
             next=false;
         }
 
         String iBrand= itemBrand.getText();
         Brand brand=  br.findOneByName(iBrand);
         if(br.findOneByName(iBrand)==null) {
-            itemBrand.setText("Marca no existe");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Marca no existe");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese una marca existente");
+            alert.showAndWait();
             next = false;
         }
 
         String iStore= itemStore.getText();
         Store store= sr.findOneByName(iStore);
         if(sr.findOneByName(iStore)==null){
-            itemStore.setText("Tienda no existe");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Tienda no existe");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese una tienda existente");
+            alert.showAndWait();
             next=false;
         }
 
