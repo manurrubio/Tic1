@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 import proyecto.tic.AApplicationFX;
-import proyecto.tic.CApplicationFX;
 
 import java.io.IOException;
 

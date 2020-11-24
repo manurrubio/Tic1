@@ -5,11 +5,13 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -25,19 +27,18 @@ import proyecto.tic.services.exceptions.InvalidInformation;
 import proyecto.tic.services.exceptions.StoreAlreadyExists;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 @Component
 @FxmlView("/applicationAddStore.fxml")
-public class AddStoreController {
+public class AddStoreController implements Initializable {
     @Autowired
     private StoreService ss;
 
     @FXML
     private AnchorPane anchorPane;
-
-    @FXML
-    private JFXTextField storeName;
 
     @FXML
     private JFXButton addStoreButton;
@@ -47,6 +48,9 @@ public class AddStoreController {
 
     @FXML
     private Text storeAlreadyExists;
+
+    @FXML
+    private JFXTextField storeName;
 
     @FXML
     private JFXTextField storeDir;
@@ -59,33 +63,39 @@ public class AddStoreController {
 
     @FXML
     void addStore(ActionEvent event) throws StoreAlreadyExists, InvalidInformation, IOException {
-        boolean next=true;
-        String sName= storeName.getText();
-        if(ss.getStore(sName)!=null){
-            next=false;
+        if(storeName.getText() == null || storeDir.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Campos nulos");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor ingrese todos los campos");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else if(ss.getStore(storeName.getText())!=null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Tienda ya existe");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese una tienda nueva");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
         }
-        String sDir= storeDir.getText();
-        if(sName==null||sDir==null){
-            next=false;
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Campo nulo");
-            alert.setHeaderText(null);
-            alert.setContentText("Por favor complete todos los campos");
-            alert.showAndWait();
-        }
-        if(next=true){
-            Store toAdd= new Store(sName,sDir, admi);
+        else{
+            Store toAdd= new Store(storeName.getText(),storeDir.getText(), admi);
             ss.addStore(toAdd);
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Tienda ingresada");
             alert.setHeaderText(null);
             alert.setContentText("Tienda ingresada con éxito");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
             ButtonType buttonTypeOk = new ButtonType("Ok");
             alert.getButtonTypes().setAll(buttonTypeOk);
 
@@ -114,4 +124,9 @@ public class AddStoreController {
         window.show();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        storeDir.setText(null);
+        storeName.setText(null);
+    }
 }
