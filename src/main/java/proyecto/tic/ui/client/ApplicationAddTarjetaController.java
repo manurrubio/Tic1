@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import proyecto.tic.CApplicationFX;
 import proyecto.tic.services.TarjetaService;
 import proyecto.tic.services.entities.Tarjeta;
@@ -70,7 +69,6 @@ public class ApplicationAddTarjetaController {
     void setUsuario(Usuario usuario){
         this.usuario=usuario;
     }
-
 
     @FXML
     void regTarjetaButton(ActionEvent event) throws InvalidInformation, TarjetaAlreadyExists, IOException {
