@@ -14,15 +14,18 @@
    <children>
       <HBox>
          <children>
-            <Label prefHeight="40.0" prefWidth="96.0" text="Nombre app">
+            <Label prefHeight="41.0" prefWidth="202.0" text="G3 Shopping">
                <padding>
                   <Insets left="10.0" />
                </padding>
                <HBox.margin>
                   <Insets left="3.0" right="13.0" top="15.0" />
                </HBox.margin>
+               <font>
+                  <Font name="Calibri Light Italic" size="36.0" />
+               </font>
             </Label>
-            <HBox alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="668.0" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="549.0" />
          </children>
       </HBox>
       <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;">

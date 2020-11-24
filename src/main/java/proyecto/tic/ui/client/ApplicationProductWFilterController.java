@@ -78,6 +78,12 @@ public class ApplicationProductWFilterController  implements Initializable {
     private JFXButton buttonFiltrar;
 
     @FXML
+    private ImageView carritoButton;
+
+    @Autowired
+    private ApplicationMenuController am;
+
+    @FXML
     private ImageView toAdd;
     private Usuario usuario = null;
     private String category;
@@ -200,6 +206,24 @@ public class ApplicationProductWFilterController  implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        carritoButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent event) {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+                        Parent inicioSesion = null;
+                        am.inicioSesion(usuario);
+                        try {
+                            inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        window.setScene(paginaInicio);
+                        window.show();
+
+                    }
+                });
         funcionDeNombreX();
     }
 

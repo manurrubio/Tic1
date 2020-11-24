@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.client.ApplicationProductWFilterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.client.ApplicationProductBrand">
     <children>
         <BorderPane layoutX="-2.0" layoutY="103.0" prefHeight="310.0" prefWidth="653.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="103.0">
             <center>
@@ -99,7 +99,7 @@
       </AnchorPane>
       <HBox>
          <children>
-            <Label prefHeight="41.0" prefWidth="369.0" text=" G3 Shopping">
+            <Label prefHeight="41.0" prefWidth="203.0" text=" G3 Shopping">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -110,7 +110,7 @@
                   <Font name="Calibri Light Italic" size="36.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="390.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="556.0">
                <children>
                   <JFXButton fx:id="loginButton" onAction="#login" style="-fx-background-radius: 1cm; -fx-background-color: #FFC75F;" text="Ingresar">
                      <cursor>

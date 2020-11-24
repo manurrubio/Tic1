@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -44,6 +46,8 @@ public class ApplicationMenuController implements Initializable {
 
     @Autowired
     private BrandService bs;
+    @Autowired
+    private ApplicationProductBrand ab;
     @Autowired
     private ApplicationProductWFilterController ap;
     @Autowired
@@ -127,14 +131,7 @@ public class ApplicationMenuController implements Initializable {
         if (usuario!=null){
             loginButton.setText("Cerrar sesión");
         }
-        /*
-           --CODIGO PARA TABLA--
-        c1.setCellValueFactory(new PropertyValueFactory<Brand, ImageView>("brandImage"));
-        c2.setCellValueFactory(new PropertyValueFactory<Brand, String>("name"));
 
-        table.setItems(getAllBrands());
-        */
-        //CODIGO PARA UN GRID!!!
         grid.getChildren().clear();
         grid.setPadding(new Insets(90, 7, 80, 7));
         grid.setHgap(150);
@@ -151,18 +148,18 @@ public class ApplicationMenuController implements Initializable {
                 toAdd.setFitHeight(150);
                 toAdd.setImage(images[i]);
                 grid.add(toAdd, n, m);
-                /* / boton :)
                 int finalI = i;
                 toAdd.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     public void handle(MouseEvent event) {
                         Brand brand = brands.get(finalI);
 
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setControllerFactory(ApplicationFX.getContext()::getBean);
+                        fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
                         Parent inicioSesion = null;
                         try {
-                            ap.setAtributo(brand.getName());
-                            inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductWFilter.fxml"));
+                            ab.setAtributo(brand);
+                            ab.inicioSesion(usuario);
+                            inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationProductBrand.fxml"));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -173,7 +170,6 @@ public class ApplicationMenuController implements Initializable {
 
                     }
                 });
-                / */
                 if (images[i + 1] == null) {
                     complete = true;
                 } else {

@@ -66,17 +66,6 @@
                         <Insets right="11.0" top="8.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <ImageView fx:id="carritoButton" accessibleRole="BUTTON" fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/icons/icono-carrito.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <HBox.margin>
-                        <Insets right="11.0" top="8.0" />
-                     </HBox.margin>
-                  </ImageView>
                </children>
             </HBox>
          </children>
@@ -130,19 +119,19 @@
             </VBox>
          </center>
          <left>
-            <Label text="Hola" BorderPane.alignment="CENTER">
+            <Label text="       " BorderPane.alignment="CENTER">
                <font>
                   <Font name="Forte" size="19.0" />
                </font></Label>
          </left>
          <bottom>
-            <Label text="Dani" BorderPane.alignment="CENTER">
+            <Label text="     " BorderPane.alignment="CENTER">
                <font>
                   <Font name="Mistral" size="24.0" />
                </font></Label>
          </bottom>
          <right>
-            <Label prefHeight="17.0" prefWidth="15.0" text=":)" BorderPane.alignment="CENTER">
+            <Label prefHeight="17.0" prefWidth="15.0" text="   " BorderPane.alignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="54.0" />
                </font>

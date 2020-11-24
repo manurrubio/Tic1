@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -16,21 +18,11 @@
                <children>
                   <VBox alignment="CENTER_LEFT" layoutX="94.0" layoutY="-17.0" prefHeight="353.0" prefWidth="196.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="-17.0">
                      <children>
-                        <Label text="El team" textFill="#f4f9ff">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label text="N°1" textFill="#f4f9ff">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Label>
-                        <Label text="del Sherman" textFill="#f4f9ff">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
+                        <ImageView fitHeight="271.0" fitWidth="329.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons/kisspng-mandala-portable-network-graphics-clip-art-drawing-download-free-png-mandala-png-image-dlpng.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </VBox>
                </children>

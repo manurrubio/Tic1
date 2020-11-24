@@ -31,6 +31,7 @@ proyecto/tic/ui/client/ApplicationProductWFilterController.java
  proyecto.tic.ui.client.ApplicationProductWFilterController$1
  proyecto.tic.ui.client.ApplicationProductWFilterController$2
  proyecto.tic.ui.client.ApplicationProductWFilterController$3
+ proyecto.tic.ui.client.ApplicationProductWFilterController$4
 proyecto/tic/services/rmi/TarjetaManager.java
  proyecto.tic.services.rmi.TarjetaManager
 proyecto/tic/services/entities/Stock.java
@@ -51,6 +52,7 @@ proyecto/tic/services/entities/Item.java
  proyecto.tic.services.entities.Item
 proyecto/tic/ui/client/ApplicationMenuController.java
  proyecto.tic.ui.client.ApplicationMenuController
+ proyecto.tic.ui.client.ApplicationMenuController$1
 proyecto/tic/persistence/StockRepository.java
  proyecto.tic.persistence.StockRepository
 proyecto/tic/services/rmi/StockManager.java
@@ -64,6 +66,7 @@ proyecto/tic/ui/client/ApplicationComprarController.java
 proyecto/tic/ui/client/ApplicationProductController.java
  proyecto.tic.ui.client.ApplicationProductController
  proyecto.tic.ui.client.ApplicationProductController$1
+ proyecto.tic.ui.client.ApplicationProductController$2
 proyecto/tic/AdmiApp.java
  proyecto.tic.AdmiApp
 proyecto/tic/services/exceptions/TarjetaAlreadyExists.java
@@ -72,6 +75,11 @@ proyecto/tic/persistence/TarjetaRepository.java
  proyecto.tic.persistence.TarjetaRepository
 proyecto/tic/services/rmi/BrandManager.java
  proyecto.tic.services.rmi.BrandManager
+proyecto/tic/ui/client/ApplicationProductBrand.java
+ proyecto.tic.ui.client.ApplicationProductBrand
+ proyecto.tic.ui.client.ApplicationProductBrand$1
+ proyecto.tic.ui.client.ApplicationProductBrand$2
+ proyecto.tic.ui.client.ApplicationProductBrand$3
 proyecto/tic/persistence/UsuarioRepository.java
  proyecto.tic.persistence.UsuarioRepository
 proyecto/tic/services/entities/ItemSpecification.java

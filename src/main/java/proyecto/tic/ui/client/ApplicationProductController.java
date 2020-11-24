@@ -61,6 +61,8 @@ public class ApplicationProductController implements Initializable {
     private StockService ss;
     @Autowired
     private ApplicationComprarController ac;
+    @Autowired
+    private ApplicationMenuController am;
 
     @FXML
     private JFXTextField search;
@@ -156,6 +158,24 @@ public class ApplicationProductController implements Initializable {
 // no anda lo de ver la marca por alguna razon
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        carritoButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(CApplicationFX.getContext()::getBean);
+                Parent inicioSesion = null;
+                am.inicioSesion(usuario);
+                try {
+                    inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenu.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(paginaInicio);
+                window.show();
+
+            }
+        });
         if (usuario!=null){
             loginButton.setText("Cerrar sesión");
         }
