@@ -12,8 +12,6 @@ proyecto/tic/ui/client/ApplicationLoginController.java
  proyecto.tic.ui.client.ApplicationLoginController
 proyecto/tic/services/exceptions/InvalidInformation.java
  proyecto.tic.services.exceptions.InvalidInformation
-proyecto/tic/services/rmi/ItemSpecification.java
- proyecto.tic.services.rmi.ItemSpecification
 proyecto/tic/ui/admi/ApplicationMenuAdmiControllerII.java
  proyecto.tic.ui.admi.ApplicationMenuAdmiControllerII
 proyecto/tic/AApplicationFX.java
@@ -33,9 +31,6 @@ proyecto/tic/ui/client/ApplicationProductWFilterController.java
  proyecto.tic.ui.client.ApplicationProductWFilterController$1
  proyecto.tic.ui.client.ApplicationProductWFilterController$2
  proyecto.tic.ui.client.ApplicationProductWFilterController$3
- proyecto.tic.ui.client.ApplicationProductWFilterController$4
- proyecto.tic.ui.client.ApplicationProductWFilterController$5
- proyecto.tic.ui.client.ApplicationProductWFilterController$6
 proyecto/tic/services/rmi/TarjetaManager.java
  proyecto.tic.services.rmi.TarjetaManager
 proyecto/tic/services/entities/Stock.java

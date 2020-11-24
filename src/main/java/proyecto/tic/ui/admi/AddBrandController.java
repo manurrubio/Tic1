@@ -67,7 +67,7 @@ public class AddBrandController {
     void addBrand(ActionEvent event) throws BrandNotExist, BrandAlreadyExists, InvalidInformation, IOException {
         boolean next=true;
         String bName= brandName.getText();
-        if(bs.getBrand(bName)!=null){
+        if(bs.getRepository().findOneByName(bName)!=null){
             next=false;
             brandAlreadyExists.setText("Marca ya existe");
         }
@@ -78,23 +78,22 @@ public class AddBrandController {
             next=false;
             imageNotFound.setText("Imagen no ingresada");
         }
-        if(next==true){
-            Brand toAdd= new Brand(bName,pic);
+        if(next==true) {
+            Brand toAdd = new Brand(bName, pic);
             bs.addBrand(toAdd);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
+            Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
+            Scene paginaInicio = new Scene(inicioSesion, 780, 450);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(paginaInicio);
+            window.show();
         }
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(AApplicationFX.getContext()::getBean);
-        Parent inicioSesion = fxmlLoader.load(getClass().getResourceAsStream("/applicationMenuAdmiII.fxml"));
-        Scene paginaInicio = new Scene(inicioSesion, 780, 450);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(paginaInicio);
-        window.show();
-
     }
 
     @FXML
     void insertLogo(ActionEvent event) throws IOException {
-        FileChooser fileChooser=new FileChooser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Elegir logo de la marca");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All images", "*.*"),
@@ -103,10 +102,11 @@ public class AddBrandController {
         );
 
         File file = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+        if (file != null) {
+            this.pic = Files.readAllBytes(file.toPath());
 
-        this.pic= Files.readAllBytes(file.toPath());
 
-
+        }
     }
 
     @FXML

@@ -17,4 +17,5 @@ public interface ItemRepository extends CrudRepository<Item, Long> , JpaSpecific
     List<Item> findByType(String type);
     List<Item> findByBrand(String brand);
     List<Item> findById(String id);
+    List<Item> findAll();
 }

@@ -47,4 +47,9 @@ public class Brand {
     public void setBrandImage(byte[] brandImage) {
         this.brandImage = brandImage;
     }
+
+
+    public boolean equals(Brand oBrand) {
+        return this.name.equals(oBrand.getName());
+    }
 }
