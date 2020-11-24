@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -38,46 +37,26 @@
             </AnchorPane>
             <AnchorPane layoutX="196.0" layoutY="-3.0" maxWidth="411.0" prefHeight="394.0" prefWidth="411.0" style="-fx-background-color: light grey; -fx-background-radius: 0.5cm;">
                <children>
-                  <JFXButton fx:id="regTarjeta" layoutX="63.0" layoutY="339.0" onAction="#regTarjetaButton" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #d16ba5; -fx-background-radius: 1cm;" text="Registrar tarjeta">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </JFXButton>
-                  <Label layoutX="14.0" layoutY="7.0" prefHeight="49.0" prefWidth="231.0" text="Agregar tarjeta">
+                  <Label layoutX="14.0" layoutY="11.0" prefHeight="49.0" prefWidth="231.0" text="Agregar tarjeta">
                      <font>
                         <Font name="Calibri" size="36.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="volverButton" layoutX="212.0" layoutY="339.0" onAction="#volver" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #698eeb; -fx-background-radius: 1cm;" text="Volver">
+                  <JFXTextField fx:id="name" focusColor="#00c9ad" labelFloat="true" layoutX="22.0" layoutY="68.0" prefHeight="32.0" prefWidth="320.0" promptText="Nombre del titular" AnchorPane.leftAnchor="20.0" />
+                  <JFXTextField fx:id="apellido" focusColor="#00c9ad" labelFloat="true" layoutX="22.0" layoutY="119.0" prefHeight="32.0" prefWidth="320.0" promptText="Apellido del titular" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="119.0" />
+                  <JFXTextField fx:id="cvv" focusColor="#00c9ad" labelFloat="true" layoutX="20.0" layoutY="222.0" prefHeight="32.0" prefWidth="320.0" promptText="CVV" AnchorPane.leftAnchor="20.0" />
+                  <JFXTextField fx:id="numero" focusColor="#00c9ad" labelFloat="true" layoutX="20.0" layoutY="169.0" prefHeight="32.0" prefWidth="320.0" promptText="Número de tarjeta" AnchorPane.leftAnchor="20.0" />
+                  <JFXTextField fx:id="vencimiento" focusColor="#00c9ad" labelFloat="true" layoutX="22.0" layoutY="272.0" prefHeight="32.0" prefWidth="320.0" promptText="Vencimiento" AnchorPane.leftAnchor="20.0" />
+                  <JFXButton fx:id="regTarjeta" layoutX="238.0" layoutY="336.0" onAction="#registrar" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #d16ba5; -fx-background-radius: 1cm;" text="Registrar tarjeta">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXTextField fx:id="nTarjeta" focusColor="#00c9ad" labelFloat="true" layoutX="14.0" layoutY="166.0" prefHeight="32.0" prefWidth="250.0" promptText="Número de tarjeta" AnchorPane.leftAnchor="15.0">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </JFXTextField>
-                  <JFXTextField fx:id="cvv" focusColor="#00c9ad" labelFloat="true" layoutX="13.0" layoutY="216.0" prefHeight="32.0" prefWidth="250.0" promptText="CVV" AnchorPane.leftAnchor="15.0">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </JFXTextField>
-                  <JFXTextField fx:id="tVencimiento" focusColor="#00c9ad" labelFloat="true" layoutX="14.0" layoutY="266.0" prefHeight="32.0" prefWidth="250.0" promptText="Vencimiento" AnchorPane.leftAnchor="15.0">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </JFXTextField>
-                  <JFXTextField fx:id="tLastName" focusColor="#00c9ad" labelFloat="true" layoutX="13.0" layoutY="113.0" prefHeight="32.0" prefWidth="250.0" promptText="Apellido del titular" AnchorPane.leftAnchor="15.0">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </JFXTextField>
-                  <JFXTextField fx:id="tName" focusColor="#00c9ad" labelFloat="true" layoutX="13.0" layoutY="58.0" prefHeight="32.0" prefWidth="250.0" promptText="Nombre del titular" AnchorPane.leftAnchor="15.0">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </JFXTextField>
+                  <JFXButton fx:id="volverButton" layoutX="63.0" layoutY="336.0" onAction="#volver" prefHeight="32.0" prefWidth="114.0" style="-fx-background-color: #698eeb; -fx-background-radius: 1cm;" text="Volver">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
                </children>
             </AnchorPane>
          </children>

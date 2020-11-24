@@ -2,6 +2,7 @@ package proyecto.tic.ui.client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,11 +23,13 @@ import proyecto.tic.services.exceptions.InvalidInformation;
 import proyecto.tic.services.exceptions.TarjetaAlreadyExists;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 @Component
 @FxmlView("/applicationAddTarjeta.fxml")
-public class ApplicationAddTarjetaController {
+public class ApplicationAddTarjetaController implements Initializable {
     @Autowired
     private TarjetaService ts;
     @Autowired
@@ -39,90 +42,74 @@ public class ApplicationAddTarjetaController {
     private JFXButton volverButton;
 
     @FXML
-    private JFXTextField nTarjeta;
+    private JFXTextField name;
+
+    @FXML
+    private JFXTextField apellido;
+
+    @FXML
+    private JFXTextField numero;
 
     @FXML
     private JFXTextField cvv;
 
     @FXML
-    private JFXTextField tVencimiento;
-
-    @FXML
-    private JFXTextField tLastName;
-
-    @FXML
-    private JFXTextField tName;
+    private JFXTextField vencimiento;
 
 
     private Usuario usuario;
 
-    private String firstName = null;
-
-    private String lastName = null;
-
-    private Long tarjeta = null;
-
-    private Integer inputCVV = null;
-
-    private String vencimiento = null;
 
     void setUsuario(Usuario usuario){
         this.usuario=usuario;
     }
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        name.setText(null);
+        apellido.setText(null);
+        numero.setText(null);
+        cvv.setText(null);
+        vencimiento.setText(null);
+    }
     @FXML
-    void regTarjetaButton(ActionEvent event) throws InvalidInformation, TarjetaAlreadyExists, IOException {
-        if(tName.getText() == null){
+    public void registrar(ActionEvent event) throws InvalidInformation, TarjetaAlreadyExists, IOException {
+        if (name.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Nombre del titular nulo");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el nombre del titular");
             alert.showAndWait();
-        }
-        else if (tLastName.getText() == null) {
+        } else if (apellido.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Apellido del titular nulo");
             alert.setHeaderText(null);
             alert.setContentText("Por favor ingrese el apellido del titular");
             alert.showAndWait();
-        }
-        else if (tVencimiento.getText() == null) {
+        } else if (numero.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Fecha de vencimiento nula");
+            alert.setTitle("Número de tarjeta incorrecto");
             alert.setHeaderText(null);
-            alert.setContentText("Por favor ingrese una fecha de vencimiento");
+            alert.setContentText("Por favor ingrese el número de tarjeta");
             alert.showAndWait();
-        }
-        else if (cvv.getText() == null) {
+        } else if (cvv.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Cvv nulo");
+            alert.setTitle("CVV de tarjeta incorrecto");
             alert.setHeaderText(null);
-            alert.setContentText("Por favor ingrese un cvv válido");
+            alert.setContentText("Por favor ingrese el CVV de su tarjeta");
             alert.showAndWait();
-        }
-        else if (nTarjeta.getText() == null) {
+        } else if (vencimiento.getText() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Numero de tarjeta nulo");
+            alert.setTitle("Vencimiento de tarjeta nulo");
             alert.setHeaderText(null);
-            alert.setContentText("Por favor ingrese un numero de tarjeta válido");
+            alert.setContentText("Por favor ingrese el vencimiento de su tarjeta");
             alert.showAndWait();
-        }
-        else if(ts.getTarjeta(Long.valueOf(nTarjeta.getText())) != null){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Ya existe una tarjeta con este numero");
-            alert.setHeaderText(null);
-            alert.setContentText("Por favor ingrese una tarjeta que ya no se encuentre asociada");
-
-            alert.showAndWait();
-
-        }
-        else {
-            firstName = tName.getText();
-            lastName = tLastName.getText();
-            tarjeta = Long.valueOf(nTarjeta.getText());
-            inputCVV = Integer.valueOf(cvv.getText());
-            vencimiento = tVencimiento.getText();
-            Tarjeta toAdd = new Tarjeta(tarjeta, vencimiento, firstName, lastName, inputCVV, usuario);
+        } else {
+            String firstName = name.getText();
+            String lastName = apellido.getText();
+            Long tarjeta = Long.valueOf(numero.getText());
+            Integer inputCVV = Integer.valueOf(cvv.getText());
+            String venc = vencimiento.getText();
+            Tarjeta toAdd = new Tarjeta(tarjeta, venc, firstName, lastName, inputCVV, usuario);
             ts.addTarjeta(toAdd);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Tarjeta ingresada");
@@ -142,10 +129,8 @@ public class ApplicationAddTarjetaController {
                 window.setScene(paginaInicio);
                 window.show();
             }
-            alert.showAndWait();
         }
     }
-
 
     @FXML
     void volver(ActionEvent event) throws IOException {
