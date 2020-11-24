@@ -15,25 +15,7 @@
             <children>
                 <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="313.0" prefWidth="86.0" style="-fx-background-color: linear-gradient(to right bottom, #d16ba5, #c96bad, #c06cb4, #b56dbb, #a96fc1, #a175c8, #997bce, #9181d3, #8d8bda, #8995e0, #879fe6, #86a8ea); -fx-background-radius: 0.5cm;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
                     <children>
-                        <VBox alignment="CENTER_LEFT" layoutX="9.0" prefHeight="313.0" prefWidth="69.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
-                            <children>
-                                <Label text="El team" textFill="#f4f9ff">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </Label>
-                                <Label text="N°1" textFill="#f4f9ff">
-                                    <font>
-                                        <Font size="22.0" />
-                                    </font>
-                                </Label>
-                                <Label text="del Dani" textFill="#f4f9ff">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </VBox>
+                        <VBox alignment="CENTER_LEFT" layoutX="9.0" prefHeight="313.0" prefWidth="69.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane layoutX="106.0" layoutY="7.0" maxWidth="457.0" prefHeight="350.0" prefWidth="457.0" style="-fx-background-color: #FFE7FF; -fx-background-radius: 0.5cm;">

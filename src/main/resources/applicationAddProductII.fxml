@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="780.0" style="-fx-background-color: #FFE7FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.tic.ui.admi.AddProductControllerII">
    <children>
@@ -57,7 +54,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </JFXTextField>
-                  <Label layoutX="12.0" layoutY="37.0" prefHeight="49.0" prefWidth="722.0" text="Separe los distintos talles, colores y tiendas con una coma">
+                  <Label layoutX="12.0" layoutY="37.0" prefHeight="49.0" prefWidth="722.0" text="Separe los distintos talles y colores con una coma y espacio.">
                      <font>
                         <Font name="Calibri" size="20.0" />
                      </font>
@@ -82,7 +79,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <Label layoutX="12.0" layoutY="62.0" prefHeight="49.0" prefWidth="722.0" text="En caso de no agregar una imagen principal, no podra agregar el producto">
+                  <Label layoutX="12.0" layoutY="62.0" prefHeight="49.0" prefWidth="722.0" text="En caso de no agregar una imagen principal, no podra agregar el producto.">
                      <font>
                         <Font name="Calibri" size="20.0" />
                      </font>

@@ -131,7 +131,18 @@ public class AddProductControllerI implements Initializable {
                     getClass().getResource("/myDialogs.css").toExternalForm());
             dialogPane.getStyleClass().add("myDialog");
             alert.showAndWait();
-        }else
+        }else if((sr.findOneByName(itemStore.getText()).getAdmin().getCi())!=admi.getCi()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Administrador incorrecto");
+            alert.setHeaderText(null);
+            alert.setContentText("Usted no es administrador de esta tienda, ingrese una tienda válida");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+                    getClass().getResource("/myDialogs.css").toExternalForm());
+            dialogPane.getStyleClass().add("myDialog");
+            alert.showAndWait();
+        }
+        else
             {
                 int iPrice = Integer.parseInt(itemPrice.getText());
                 Brand iBrand = br.findOneByName(itemBrand.getText());

@@ -122,6 +122,9 @@ public class ApplicationProductController implements Initializable {
     @FXML
     private JFXComboBox<String> comboColorsBox;
 
+    @FXML
+    private Label descText;
+
     private Item toShow = null;
 
     private Usuario usuario=null;
@@ -129,6 +132,8 @@ public class ApplicationProductController implements Initializable {
     private String selectedSize;
 
     private String selectedColor;
+
+    private String descripcion;
 
     void setItem(Item item){
         this.toShow=item;
@@ -176,6 +181,10 @@ public class ApplicationProductController implements Initializable {
 
             }
         });
+        if(toShow.getDescription()!= null){
+            descripcion = toShow.getDescription();
+            descText.setText("DESCRIPCIÓN: " + descripcion);
+        }
         if (usuario!=null){
             loginButton.setText("Cerrar sesión");
         }
@@ -183,8 +192,6 @@ public class ApplicationProductController implements Initializable {
         if(toShow.getName()!=null){
             String name= toShow.getName();
             productName.setText(name.toUpperCase());
-        }else if(toShow.getType()!=null){
-            productName.setText(toShow.getType().toUpperCase());
         }
         if(toShow.getBrand()!=null){
             productBrand.setText("MARCA: " + toShow.getBrand().getName());

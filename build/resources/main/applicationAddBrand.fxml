@@ -15,19 +15,22 @@
    <children>
       <HBox>
          <children>
-            <Label prefHeight="40.0" prefWidth="96.0" text="Nombre app">
+            <Label prefHeight="41.0" prefWidth="242.0" text="G3 Shopping">
                <padding>
                   <Insets left="10.0" />
                </padding>
                <HBox.margin>
                   <Insets left="3.0" right="13.0" top="15.0" />
                </HBox.margin>
+               <font>
+                  <Font name="Calibri Light Italic" size="36.0" />
+               </font>
             </Label>
          </children>
       </HBox>
       <AnchorPane layoutY="58.0" prefHeight="40.0" prefWidth="780.0" style="-fx-background-color: #FFB896;" />
       <BorderPane layoutX="-2.0" layoutY="93.0" prefHeight="320.0" prefWidth="693.0" style="-fx-background-color: #FFE7FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
-         <center>
+         <bottom>
             <AnchorPane maxWidth="753.0" prefHeight="357.0" prefWidth="753.0" style="-fx-background-color: light grey; -fx-background-radius: 0.5cm;" BorderPane.alignment="CENTER">
                <children>
                   <JFXTextField fx:id="brandName" focusColor="#00c9ad" labelFloat="true" layoutX="12.0" layoutY="109.0" prefHeight="40.0" prefWidth="356.0" promptText="Nombre de la marca" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="385.0">
@@ -38,7 +41,7 @@
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXButton fx:id="addBrandButton" layoutX="178.0" layoutY="302.0" onAction="#addBrand" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #d16ba5; -fx-background-radius: 1cm;" text="Agregar marca">
+                  <JFXButton fx:id="addBrandButton" layoutX="414.0" layoutY="311.0" onAction="#addBrand" prefHeight="32.0" prefWidth="113.0" style="-fx-background-color: #d16ba5; -fx-background-radius: 1cm;" text="Agregar marca">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -48,7 +51,7 @@
                         <Font name="Calibri" size="36.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="volverButton" layoutX="522.0" layoutY="302.0" onAction="#volver" prefHeight="32.0" prefWidth="103.0" style="-fx-background-color: #698eeb; -fx-background-radius: 1cm;" text="Volver">
+                  <JFXButton fx:id="volverButton" layoutX="188.0" layoutY="311.0" onAction="#volver" prefHeight="32.0" prefWidth="103.0" style="-fx-background-color: #698eeb; -fx-background-radius: 1cm;" text="Volver">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -73,7 +76,7 @@
                   </Text>
                </children>
             </AnchorPane>
-         </center>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
